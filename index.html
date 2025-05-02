@@ -182,14 +182,28 @@
         </p>
 
         <!-- Resume Request Form -->
-        <form id="resume-form" class="fade-in delay-1">
+        <form id="resume-form" action="https://formspree.io/f/mwpolbra" method="POST">
             <h3>Request My Resume</h3>
-            <label>
-                Your Email:
-                <input type="email" name="reqEmail" placeholder="you@example.com" required>
-            </label>
-            <button type="submit"><i class="fa-solid fa-file-lines"></i> Send Request</button>
+
+            <!-- Visitor’s email field -->
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+            <!-- Optional: customize the email subject that lands in your inbox -->
+            <input type="hidden" name="_subject" value="📄 Resume Request from Portfolio">
+
+            <!-- Optional: disable Formspree’s captcha on free tier -->
+            <input type="hidden" name="_captcha" value="false">
+
+            <button type="submit">
+                <i class="fa-solid fa-file-lines"></i> Send Request
+            </button>
+
+            <!-- A spot to show a success/error message -->
+            <p id="form-status" aria-live="polite"></p>
         </form>
+
+
         <hr>
     </section>
 
@@ -211,6 +225,35 @@
             navContainer.classList.toggle('open');
         });
     </script>
+
+    <script>
+        const form = document.getElementById('resume-form');
+        const status = document.getElementById('form-status');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            try {
+                const res = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (res.ok) {
+                    status.textContent = '🎉 Thanks! Check your inbox for the resume.';
+                    form.reset();
+                } else {
+                    const data = await res.json();
+                    status.textContent = data.error || 'Oops! There was a problem.';
+                }
+            } catch (err) {
+                status.textContent = 'Network error. Please try again.';
+            }
+        });
+    </script>
+
 
 </body>
 
