@@ -37,6 +37,64 @@ body {
     line-height: 1.6;
 }
 
+/* ----------------------
+   Hamburger button
+   ---------------------- */
+.nav-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent;
+    border: none;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    display: block;
+    background: var(--text-light);
+    height: 0.25rem;
+    width: 100%;
+    border-radius: 2px;
+    position: absolute;
+    transition: transform 0.3s;
+}
+
+.hamburger {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger::before {
+    content: "";
+    top: -0.75rem;
+}
+
+.hamburger::after {
+    content: "";
+    bottom: -0.75rem;
+}
+
+/* ----------------------
+   Animate hamburger to X when open
+   ---------------------- */
+.nav-container.open+.nav-toggle .hamburger {
+    background: transparent;
+}
+
+.nav-container.open+.nav-toggle .hamburger::before {
+    transform: translateY(0.75rem) rotate(45deg);
+}
+
+.nav-container.open+.nav-toggle .hamburger::after {
+    transform: translateY(-0.75rem) rotate(-45deg);
+}
+
 /* ==========================================================================
      2. NAVIGATION
      ========================================================================== */
@@ -75,17 +133,36 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
-@media (max-width: 600px) {
-    nav ul {
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-container nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: var(--walnut-brown);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 15;
+    }
+
+    .nav-container.open nav {
+        transform: translateY(0);
+    }
+
+    .nav-container nav ul {
         flex-direction: column;
-        align-items: center;
+        gap: 1rem;
+        padding: 2rem 0;
     }
 
     nav a {
         display: block;
-        width: 100%;
+        padding: 1rem;
         text-align: center;
-        padding: 0.75rem 0;
     }
 }
 
