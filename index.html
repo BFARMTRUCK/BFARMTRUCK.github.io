@@ -5,17 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baylen Farmer's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#progress">Progress</a></li>
+        </ul>
+    </nav>
+
+    <header id="welcome">
+        <img src="images/profile.jpg" alt="Baylen Farmer Portrait" class="profile-photo">
         <h1>Baylen Farmer</h1>
         <p>Welcome! I'm a student majoring in Game Development and Cybersecurity, passionate about crafting immersive
             experiences and securing digital realms. Explore my work and interests below.</p>
         <hr>
     </header>
 
-    <section>
+    <section id="about-me">
         <h2>About Me</h2>
         <p>I'm a creative and driven person, currently working on my Bachelor’s in Game Development and Master’s in
             Cybersecurity at Boise State University. I love blending storytelling with gameplay to create unique,
@@ -33,7 +47,7 @@
         <hr>
     </section>
 
-    <section>
+    <section id="experience">
         <h2>Experience</h2>
         <h3>Certified Pharmacy Technician, St. Luke's Health System</h3>
         <p><em>Aug 2020 – Present · Meridian, Idaho</em></p>
@@ -48,7 +62,7 @@
         <hr>
     </section>
 
-    <section>
+    <section id="education">
         <h2>Education</h2>
         <h3>Bachelor's in Games, Interactive Media & Mobile (GIMM), Boise State University</h3>
         <p><em>Aug 2023 – May 2026</em></p>
@@ -58,7 +72,7 @@
         <hr>
     </section>
 
-    <section>
+    <section id="portfolio">
         <h2>Portfolio Artifact</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
             magna aliqua.</p>
@@ -66,10 +80,29 @@
         <hr>
     </section>
 
-    <footer>
+    <footer id="contact">
         <p>Check out my projects on <a href="https://github.com/BFARMTRUCK" target="_blank">GitHub</a>.</p>
         <p>Feel free to email me at <a href="mailto:baylenfarmer@gmail.com">baylenfarmer@gmail.com</a>.</p>
     </footer>
+
+    <section id="progress">
+        <h2>Progress</h2>
+        <p><strong>Completed Sections:</strong></p>
+        <ul>
+            <li>About (Biography)</li>
+            <li>Experience</li>
+            <li>Education</li>
+            <li>Portfolio Artifact</li>
+            <li>Contact</li>
+        </ul>
+        <p><strong>Additional Style Elements (ICA 8):</strong></p>
+        <ul>
+            <li>Smooth scrolling between sections (<code>scroll-behavior: smooth;</code>)</li>
+            <li>Hover‐transition on navigation links (<code>nav a:hover</code> effect)</li>
+        </ul>
+        <hr>
+    </section>
+
 </body>
 
 </html>

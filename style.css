@@ -1,0 +1,145 @@
+/* -------------------------------------
+   Variables & Global Resets
+------------------------------------- */
+:root {
+    --bg-color: #f4f7f9;
+    --primary-color: #2c3e50;
+    --accent-color: #e67e22;
+    --text-color: #34495e;
+    --font-stack: 'Segoe UI', Tahoma, sans-serif;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-stack);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  /* -------------------------------------
+     Navigation Bar
+  ------------------------------------- */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(44, 62, 80, 0.9);
+    z-index: 1000;
+  }
+  nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 1rem;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background 0.3s ease;
+  }
+  nav a:hover {
+    background: var(--accent-color);
+    border-radius: 4px;
+  }
+  
+  /* -------------------------------------
+     Fullscreen Sections & Parallax
+  ------------------------------------- */
+  header, section, footer {
+    min-height: 100vh;
+    padding: 4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /* Parallax background images per section */
+  header#welcome {
+    background-image: url('images/bg-welcome.jpg');
+    color: #fff;
+  }
+  #about-me {
+    background-image: url('images/bg-about.jpg');
+    color: #fff;
+  }
+  #experience {
+    background-image: url('images/bg-experience.jpg');
+    color: #fff;
+  }
+  #education {
+    background-image: url('images/bg-education.jpg');
+    color: #fff;
+  }
+  #portfolio {
+    background-image: url('images/bg-portfolio.jpg');
+    color: #fff;
+  }
+  footer#contact {
+    background-image: url('images/bg-contact.jpg');
+    color: #fff;
+  }
+  #progress {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    background-attachment: scroll;
+  }
+  
+  /* -------------------------------------
+     Typography & Imagery
+  ------------------------------------- */
+  h1 { font-size: 3rem; margin-bottom: 1rem; }
+  h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+  h3 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-color); }
+  p {
+    max-width: 600px;
+    margin-bottom: 1rem;
+  }
+  img { max-width: 100%; height: auto; margin: 1rem 0; }
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+    margin-bottom: 1.5rem;
+  }
+  
+  /* -------------------------------------
+     Dividers & Utilities
+  ------------------------------------- */
+  hr {
+    width: 50%;
+    max-width: 300px;
+    border: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    margin: 2rem 0;
+  }
+  
+  /* Adjust footer paragraphs */
+  footer#contact p a {
+    color: var(--accent-color);
+    text-decoration: underline;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    nav ul { flex-wrap: wrap; gap: 0.5rem; }
+  }
+  
