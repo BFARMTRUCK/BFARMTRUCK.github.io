@@ -2,257 +2,322 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Baylen Farmer's Portfolio</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    />
 
-    <!-- Font Awesome for icons -->
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-pI1P5+M/..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Your stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <button class="nav-toggle" aria-label="Toggle navigation">
-        <span class="hamburger"></span>
-    </button>
-
-    <div class="nav-container">
-        <nav>
-            <ul>
-                <li><a href="#welcome">Welcome</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#misc">More</a></li>
-            </ul>
-        </nav>
-    </div>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md" style="background: var(--walnut-brown);">
+        <div class="container">
+            <a class="navbar-brand text-light" href="#welcome">Baylen Farmer</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-light" href="#welcome">Welcome</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#about-me">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#misc">More</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <!-- WELCOME / BIO -->
     <header id="welcome" class="parallax">
         <div class="overlay">
-            <img src="images/Baylen Profile.jpg" alt="Baylen Farmer Portrait" class="profile-photo">
+            <img src="images/Baylen Profile.jpg" alt="Baylen Farmer Portrait" class="profile-photo" />
             <h1 class="fade-in">Baylen Farmer</h1>
-            <p class="fade-in delay-1"></p>
-            <p>Welcome! I'm a student majoring in Game Development and Cybersecurity, passionate about crafting
+            <p class="fade-in delay-1">
+                Welcome! I'm a student majoring in Game Development and Cybersecurity, passionate about crafting
                 immersive
-                experiences and securing digital realms. Explore my work and interests below.</p>
-            <hr>
+                experiences and securing digital realms. Explore my work and interests below.
+            </p>
+            <hr />
         </div>
     </header>
 
+    <!-- ABOUT ME -->
     <section id="about-me">
-        <h2>About Me</h2>
-        <p>I'm a creative and driven person, currently working on my Bachelor’s in Game Development and Master’s in
-            Cybersecurity at Boise State University. I love blending storytelling with gameplay to create unique,
-            immersive worlds that spark imagination and keep players engaged.</p>
-        <p>I’ve worked on everything from RTS games with procedural generation to AR experiences, mainly using Unity. My
-            goal is to not just make games that are fun but also safe and seamless, exploring how cybersecurity can
-            enhance player experiences.</p>
-        <p>Outside of game development, I enjoy drawing (especially anime and realistic styles), singing, and telling
-            stories that make people laugh or think. Being part of the Pristine Jazz Choir helped me develop confidence
-            in performance and collaboration, which I bring into everything I do.</p>
-        <p>At the end of the day, I want to create worlds and experiences that inspire people and leave a lasting
-            impact.</p>
-        <p>View my full LinkedIn profile: <a href="https://www.linkedin.com/in/baylenfarmer/"
-                target="_blank">linkedin.com/in/baylenfarmer</a></p>
-        <hr>
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        I'm a creative and driven person, currently working on my Bachelor’s in Game Development and
+                        Master’s in
+                        Cybersecurity at Boise State University. I love blending storytelling with gameplay to create
+                        unique,
+                        immersive worlds that spark imagination and keep players engaged.
+                    </p>
+                    <p>
+                        I’ve worked on everything from RTS games with procedural generation to AR experiences, mainly
+                        using Unity.
+                        My goal is to not just make games that are fun but also safe and seamless, exploring how
+                        cybersecurity can
+                        enhance player experiences.
+                    </p>
+                    <p>
+                        Outside of game development, I enjoy drawing (especially anime and realistic styles), singing,
+                        and telling
+                        stories that make people laugh or think. Being part of the Pristine Jazz Choir helped me develop
+                        confidence
+                        in performance and collaboration, which I bring into everything I do.
+                    </p>
+                    <p>
+                        At the end of the day, I want to create worlds and experiences that inspire people and leave a
+                        lasting
+                        impact.
+                    </p>
+                    <p>
+                        View my full LinkedIn profile:
+                        <a href="https://www.linkedin.com/in/baylenfarmer/" target="_blank">
+                            linkedin.com/in/baylenfarmer
+                        </a>
+                    </p>
+                    <hr />
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- EXPERIENCE -->
     <section id="experience">
-        <h2>Experience</h2>
-        <h3>Certified Pharmacy Technician, St. Luke's Health System</h3>
-        <p><em>Aug 2020 – Present · Meridian, Idaho</em></p>
-        <p>I’m a Certified Pharmacy Technician (CPhT 4) who takes pride in going beyond the basics of the role. I train
-            and mentor new technicians, helping them develop the skills and confidence they need to succeed. In my
-            day-to-day work, I compound medications with precision and ensure compliance with all safety and regulatory
-            standards.</p>
-        <p>I’m passionate about improving workflows and processes to make things more efficient and accurate. I’ve
-            handled audits, implemented new systems, and designed a Controlled Substance Log powered by VBA in Excel to
-            streamline the tracking of controlled substances. This tool has significantly enhanced accountability and
-            saved time for the entire team.</p>
-        <hr>
+        <div class="container">
+            <h2>Experience</h2>
+            <h3>Certified Pharmacy Technician, St. Luke's Health System</h3>
+            <p><em>Aug 2020 – Present · Meridian, Idaho</em></p>
+            <p>
+                I’m a Certified Pharmacy Technician (CPhT 4) who takes pride in going beyond the basics of the role. I
+                train
+                and mentor new technicians, helping them develop the skills and confidence they need to succeed. In my
+                day-to-day work, I compound medications with precision and ensure compliance with all safety and
+                regulatory
+                standards.
+            </p>
+            <p>
+                I’m passionate about improving workflows and processes to make things more efficient and accurate. I’ve
+                handled
+                audits, implemented new systems, and designed a Controlled Substance Log powered by VBA in Excel to
+                streamline
+                the tracking of controlled substances. This tool has significantly enhanced accountability and saved
+                time
+                for the entire team.
+            </p>
+            <hr />
+        </div>
     </section>
 
+    <!-- EDUCATION -->
     <section id="education">
-        <h2>Education</h2>
-        <h3>Bachelor's in Games, Interactive Media & Mobile (GIMM), Boise State University</h3>
-        <p><em>Aug 2023 – May 2026</em></p>
-        <p>Activities: Jazz Choir (collaborative vocal performance, teamwork, creativity).</p>
-        <p>The GIMM program combines technology, storytelling, and design to create innovative interactive experiences
-            across games, AR/VR, and multimedia.</p>
-        <hr>
+        <div class="container">
+            <h2>Education</h2>
+            <h3>Bachelor's in Games, Interactive Media & Mobile (GIMM), Boise State University</h3>
+            <p><em>Aug 2023 – May 2026</em></p>
+            <p>Activities: Jazz Choir (collaborative vocal performance, teamwork, creativity).</p>
+            <p>
+                The GIMM program combines technology, storytelling, and design to create innovative interactive
+                experiences
+                across games, AR/VR, and multimedia.
+            </p>
+            <hr />
+        </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-            <!-- Eternal Realms -->
-            <div class="project-card fade-in">
-                <h3><i class="fa-solid fa-dragon"></i> Eternal Realms – The Shattered Veil</h3>
-                <p class="small">
-                    Real-time strategy, Empire Earth–inspired fantasy RTS. Progress through magical ages, build, and
-                    battle epic bosses.
-                </p>
-                <ul>
-                    <li><strong>Skills:</strong> Unity, C#, Procedural Terrain, Adaptive Audio, VFX, UI/UX</li>
-                    <li><strong>Representation:</strong>
-                        <a href="#">Video</a>,
-                        <a href="#">Code</a>,
-                        <a href="#">Images</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- VR Experience -->
-            <div class="project-card fade-in delay-1">
-                <h3><i class="fa-solid fa-vr-cardboard"></i> Interactive VR Experience</h3>
-                <p class="small">
-                    A short Unity XR Toolkit–powered VR world with gaze & hand-tracking interactions.
-                </p>
-                <ul>
-                    <li><strong>Skills:</strong> Unity, XR Toolkit, VR Design, Interaction Scripting</li>
-                    <li><strong>Representation:</strong> <a href="#">Build</a>, <a href="#">Video</a></li>
-                </ul>
-            </div>
-
-            <!-- Interactive Comic -->
-            <div class="project-card fade-in delay-2">
-                <h3><i class="fa-solid fa-book-open"></i> Interactive Comic Strip</h3>
-                <p class="small">
-                    Branching 2D comic with choice-driven animations powered by JS.
-                </p>
-                <ul>
-                    <li><strong>Skills:</strong> HTML/CSS, JS, Photoshop, Storyboarding</li>
-                    <li><strong>Representation:</strong> <a href="#">Images</a></li>
-                </ul>
-            </div>
-
-            <!-- Short Story -->
-            <div class="project-card fade-in delay-3">
-                <h3><i class="fa-solid fa-code"></i> Interactive Short Story</h3>
-                <p class="small">
-                    Branching web story with visuals & sound that reacts to reader choices.
-                </p>
-                <ul>
-                    <li><strong>Skills:</strong> HTML, CSS, JS, UI/UX, Creative Writing</li>
-                    <li><strong>Representation:</strong> <a href="#">Demo</a></li>
-                </ul>
-            </div>
-
-            <!-- Database Tables -->
-            <div class="project-card fade-in delay-4">
-                <h3><i class="fa-solid fa-database"></i> Medication Database</h3>
-                <p class="small">
-                    phpMyAdmin-backed web DB of meds, forms & strengths, synced live to pages.
-                </p>
-                <ul>
-                    <li><strong>Skills:</strong> SQL, PHP, JS, HTML/CSS</li>
-                    <li><strong>Representation:</strong> <a href="#">Video</a>, <a href="#">Code</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-
-        <div class="contact-container">
-            <div class="contact-info">
-                <p><i class="fa-solid fa-envelope"></i>
-                    <a href="mailto:baylenfarmer@gmail.com">baylenfarmer@gmail.com</a>
-                </p>
-                <p><i class="fa-brands fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/baylenfarmer/" target="_blank">
-                        linkedin.com/in/baylenfarmer
-                    </a>
-                </p>
-                <p><i class="fa-brands fa-github"></i>
-                    <a href="https://github.com/BFARMTRUCK" target="_blank">
-                        github.com/BFARMTRUCK
-                    </a>
-                </p>
-            </div>
-
-            <div class="contact-form">
-                <h3>Request My Resume</h3>
-                <div class="resume-fields">
-                    <label>
-                        First Name
-                        <input type="text" id="firstName" placeholder="Jane">
-                    </label>
-                    <label>
-                        Last Name
-                        <input type="text" id="lastName" placeholder="Doe">
-                    </label>
-                    <label>
-                        Email Address
-                        <input type="email" id="email" placeholder="you@example.com">
-                    </label>
-                    <label>
-                        Reason for Request
-                        <textarea id="reason" rows="3" placeholder="Reason for requesting?"></textarea>
-                    </label>
-                    <button id="submit-btn">
-                        <i class="fa-solid fa-file-lines"></i> Send Request
-                    </button>
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="row g-4">
+                <!-- Eternal Realms -->
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <h3><i class="fa-solid fa-dragon"></i> Eternal Realms – The Shattered Veil</h3>
+                        <p class="small">
+                            Real-time strategy, Empire Earth–inspired fantasy RTS. Progress through magical ages, build,
+                            and battle epic
+                            bosses.
+                        </p>
+                        <ul>
+                            <li><strong>Skills:</strong> Unity, C#, Procedural Terrain, Adaptive Audio, VFX, UI/UX</li>
+                            <li>
+                                <strong>Representation:</strong> <a href="#">Video</a>, <a href="#">Code</a>, <a
+                                    href="#">Images</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <p id="request-status" aria-live="polite"></p>
+                <!-- VR Experience -->
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <h3><i class="fa-solid fa-vr-cardboard"></i> Interactive VR Experience</h3>
+                        <p class="small">
+                            A short Unity XR Toolkit–powered VR world with gaze & hand-tracking interactions.
+                        </p>
+                        <ul>
+                            <li><strong>Skills:</strong> Unity, XR Toolkit, VR Design, Interaction Scripting</li>
+                            <li><strong>Representation:</strong> <a href="#">Build</a>, <a href="#">Video</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Interactive Comic -->
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <h3><i class="fa-solid fa-book-open"></i> Interactive Comic Strip</h3>
+                        <p class="small">
+                            Branching 2D comic with choice-driven animations powered by JS.
+                        </p>
+                        <ul>
+                            <li><strong>Skills:</strong> HTML/CSS, JS, Photoshop, Storyboarding</li>
+                            <li><strong>Representation:</strong> <a href="#">Images</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Interactive Short Story -->
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <h3><i class="fa-solid fa-code"></i> Interactive Short Story</h3>
+                        <p class="small">
+                            Branching web story with visuals & sound that reacts to reader choices.
+                        </p>
+                        <ul>
+                            <li><strong>Skills:</strong> HTML, CSS, JS, UI/UX, Creative Writing</li>
+                            <li><strong>Representation:</strong> <a href="#">Demo</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Medication Database -->
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <h3><i class="fa-solid fa-database"></i> Medication Database</h3>
+                        <p class="small">
+                            phpMyAdmin-backed web DB of meds, forms & strengths, synced live to pages.
+                        </p>
+                        <ul>
+                            <li><strong>Skills:</strong> SQL, PHP, JS, HTML/CSS</li>
+                            <li><strong>Representation:</strong> <a href="#">Video</a>, <a href="#">Code</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <hr />
         </div>
-
-        <hr>
     </section>
 
+    <!-- CONTACT & RESUME REQUEST -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="row">
+                <!-- Your contact info -->
+                <div class="col-md-6 contact-info">
+                    <p>
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:baylenfarmer@gmail.com">baylenfarmer@gmail.com</a>
+                    </p>
+                    <p>
+                        <i class="fa-brands fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/baylenfarmer/" target="_blank">
+                            linkedin.com/in/baylenfarmer
+                        </a>
+                    </p>
+                    <p>
+                        <i class="fa-brands fa-github"></i>
+                        <a href="https://github.com/BFARMTRUCK" target="_blank">
+                            github.com/BFARMTRUCK
+                        </a>
+                    </p>
+                </div>
+                <!-- Custom resume-request fields -->
+                <div class="col-md-6 contact-form">
+                    <h3>Request My Resume</h3>
+                    <div class="resume-fields">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" placeholder="Jane" />
 
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" placeholder="Doe" />
+
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com" />
+
+                        <label for="reason">Message</label>
+                        <textarea id="reason" rows="3" placeholder="Reasopn for request"></textarea>
+
+                        <button id="submit-btn">
+                            <i class="fa-solid fa-file-lines"></i> Send Request
+                        </button>
+                    </div>
+                    <p id="request-status" aria-live="polite"></p>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </section>
 
     <!-- MISC GALLERY -->
     <section id="misc">
-        <h2>Art & Models</h2>
-        <div class="gallery-grid fade-in delay-2">
-            <img src="images/art1.jpg" alt="Art sample">
-            <img src="images/art2.jpg" alt="3D model sample">
-            <img src="images/art3.jpg" alt="Sketch sample">
+        <div class="container">
+            <h2>Art & Models</h2>
+            <div class="row g-3">
+                <div class="col-6 col-md-4">
+                    <img src="images/art1.jpg" class="img-fluid rounded" alt="Art sample" />
+                </div>
+                <div class="col-6 col-md-4">
+                    <img src="images/art2.jpg" class="img-fluid rounded" alt="3D model sample" />
+                </div>
+                <div class="col-6 col-md-4">
+                    <img src="images/art3.jpg" class="img-fluid rounded" alt="Sketch sample" />
+                </div>
+            </div>
+            <hr />
         </div>
-        <hr>
     </section>
 
-    <script>
-        const toggleBtn = document.querySelector('.nav-toggle');
-        const navContainer = document.querySelector('.nav-container');
-        toggleBtn.addEventListener('click', () => {
-            navContainer.classList.toggle('open');
-        });
-    </script>
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
 
+    <!-- Formspree Submission Script -->
     <script>
         const btn = document.getElementById('submit-btn');
         const status = document.getElementById('request-status');
 
         btn.addEventListener('click', async () => {
-            // Gather values
             const first = document.getElementById('firstName').value.trim();
             const last = document.getElementById('lastName').value.trim();
             const email = document.getElementById('email').value.trim();
             const reason = document.getElementById('reason').value.trim();
 
-            // Simple validation
             if (!first || !last || !email || !reason) {
                 status.textContent = '⚠️ Please fill in all fields before submitting.';
                 return;
             }
 
-            // Build payload for Formspree
             const payload = new URLSearchParams({
                 first_name: first,
                 last_name: last,
@@ -287,7 +352,6 @@
             }
         });
     </script>
-
 </body>
 
 </html>

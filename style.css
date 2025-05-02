@@ -1,5 +1,5 @@
-/* ==========================================================================
-   1. ROOT VARIABLES & GLOBAL RESET
+/* ========================================================================== 
+   1. ROOT VARIABLES & GLOBAL RESET 
    ========================================================================== */
 :root {
     /* Color Palette */
@@ -37,149 +37,15 @@ body {
     line-height: 1.6;
 }
 
-/* ----------------------
-   Hamburger button
-   ---------------------- */
-.nav-toggle {
-    display: none;
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: transparent;
-    border: none;
-    z-index: 20;
-    cursor: pointer;
-}
-
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-    display: block;
-    background: var(--text-light);
-    height: 0.25rem;
-    width: 100%;
-    border-radius: 2px;
-    position: absolute;
-    transition: transform 0.3s;
-}
-
-.hamburger {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.hamburger::before {
-    content: "";
-    top: -0.75rem;
-}
-
-.hamburger::after {
-    content: "";
-    bottom: -0.75rem;
-}
-
-/* ----------------------
-   Animate hamburger to X when open
-   ---------------------- */
-.nav-container.open+.nav-toggle .hamburger {
-    background: transparent;
-}
-
-.nav-container.open+.nav-toggle .hamburger::before {
-    transform: translateY(0.75rem) rotate(45deg);
-}
-
-.nav-container.open+.nav-toggle .hamburger::after {
-    transform: translateY(-0.75rem) rotate(-45deg);
-}
-
-/* ==========================================================================
-     2. NAVIGATION
-     ========================================================================== */
-nav {
-    position: sticky;
-    top: 0;
-    background: var(--walnut-brown);
-    padding: 0.75rem 1rem;
-    z-index: 10;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-}
-
-nav li {
-    flex: 0 1 auto;
-}
-
-nav a {
-    color: var(--text-light);
-    text-decoration: none;
-    padding: 0.4rem 0.75rem;
-    border-radius: 4px;
-    transition: background 0.3s, transform 0.2s;
-}
-
-nav a:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block;
-    }
-
-    .nav-container nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: var(--walnut-brown);
-        transform: translateY(-100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 15;
-    }
-
-    .nav-container.open nav {
-        transform: translateY(0);
-    }
-
-    .nav-container nav ul {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 2rem 0;
-    }
-
-    nav a {
-        display: block;
-        padding: 1rem;
-        text-align: center;
-    }
-}
-
-/* ==========================================================================
-     3. PARALLAX HEADER
+/* ========================================================================== 
+     2. PARALLAX HEADER 
      ========================================================================== */
 header#welcome {
-    /* Replace with your header image */
-    background-image: url('images/bg-welcome.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: url('images/bg-welcome.jpg') center/cover fixed;
     min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
 header#welcome .overlay {
@@ -209,8 +75,8 @@ header#welcome p {
     margin: 0.5rem auto;
 }
 
-/* ==========================================================================
-     4. GENERIC SECTION STYLES
+/* ========================================================================== 
+     3. GENERIC SECTION STYLES 
      ========================================================================== */
 section {
     padding: 3rem 1.5rem;
@@ -224,8 +90,8 @@ hr {
     margin: 2rem auto;
 }
 
-/* ==========================================================================
-     5. SECTION BACKGROUNDS
+/* ========================================================================== 
+     4. SECTION BACKGROUNDS 
      ========================================================================== */
 #about-me {
     background: var(--ruddy-blue);
@@ -257,8 +123,8 @@ hr {
     color: var(--text-dark);
 }
 
-/* ==========================================================================
-     6. ABOUT ME & EXPERIENCE HEADINGS
+/* ========================================================================== 
+     5. HEADINGS 
      ========================================================================== */
 h2 {
     text-align: center;
@@ -268,19 +134,12 @@ h2 {
 
 h3 {
     color: var(--accent);
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    margin: 1rem 0 0.5rem;
 }
 
-/* ==========================================================================
-     7. PROJECTS GRID
+/* ========================================================================== 
+     6. PROJECT CARDS 
      ========================================================================== */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-}
-
 .project-card {
     background: var(--text-light);
     color: var(--text-dark);
@@ -310,99 +169,65 @@ h3 {
     text-decoration: underline;
 }
 
-/* ==========================================================================
-     8. GALLERY GRID
+/* ========================================================================== 
+     7. GALLERY 
      ========================================================================== */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
-}
-
-.gallery-grid img {
-    width: 100%;
-    border-radius: 6px;
+.img-fluid {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
 }
 
-.gallery-grid img:hover {
+.img-fluid:hover {
     transform: scale(1.03);
 }
 
-/* ==========================================================================
-     9. CONTACT + FORM
+/* ========================================================================== 
+     8. CONTACT & FORM FIELDS 
      ========================================================================== */
-#contact p,
-#contact a {
-    text-align: center;
-    margin: 0.5rem 0;
-    color: inherit;
-}
-
-#contact i {
-    margin-right: 0.5rem;
-}
-
-#resume-form {
-    max-width: 320px;
-    margin: 1rem auto;
+.contact-info p,
+.contact-info a {
     text-align: left;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
 }
 
-#resume-form label {
+.resume-fields {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.resume-fields label {
     display: block;
-    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
     font-weight: bold;
 }
 
-#resume-form input {
+.resume-fields input,
+.resume-fields textarea {
     width: 100%;
     padding: 0.5rem;
-    border: none;
+    margin-bottom: 1rem;
+    border: 1px solid var(--dim-gray);
     border-radius: 4px;
-    margin-bottom: 0.75rem;
-}
-
-#resume-form button {
-    background: var(--accent);
-    color: var(--text-light);
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-#resume-form button:hover {
-    background: var(--walnut-brown);
-}
-
-#request-resume label {
-    display: block;
-    margin-bottom: 0.75rem;
-}
-
-#request-resume input,
-#request-resume textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid var(--slate-gray);
+    font-family: Verdana, sans-serif;
 }
 
 #submit-btn {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
     background: var(--accent);
     color: var(--text-light);
-    padding: 0.6rem 1.2rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
 }
 
-#submit-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+#submit-btn:hover {
+    background: var(--walnut-brown);
+    transform: translateY(-2px);
 }
 
 #request-status {
@@ -410,9 +235,8 @@ h3 {
     font-style: italic;
 }
 
-
-/* ==========================================================================
-     10. FADE-IN ANIMATIONS
+/* ========================================================================== 
+     9. FADE-IN ANIMATIONS 
      ========================================================================== */
 .fade-in {
     opacity: 0;
@@ -439,73 +263,4 @@ h3 {
     to {
         opacity: 1;
     }
-}
-
-/* ==============================================
-   11. STYLE THE RESUME REQUEST TO MATCH CONTACT
-   ============================================== */
-
-/* Ensure the contact-form column aligns like contact-info */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Match the Contact Me heading style */
-.contact-form>h3 {
-    color: var(--text-light);
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-}
-
-/* Constrain the fields so they don’t stretch edge-to-edge */
-.resume-fields {
-    width: 100%;
-    max-width: 350px;
-}
-
-/* Each label + input group stacks like a paragraph */
-.resume-fields label {
-    display: block;
-    color: var(--text-light);
-    margin-bottom: 0.75rem;
-    font-weight: normal;
-    text-align: left;
-}
-
-/* Inputs & textarea fill the column */
-.resume-fields input,
-.resume-fields textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid var(--dim-gray);
-    border-radius: 4px;
-    margin-top: 0.25rem;
-    font-family: Verdana, sans-serif;
-}
-
-/* Match your “Contact” links: white text on taupe background */
-.resume-fields input,
-.resume-fields textarea {
-    background: var(--text-light);
-    color: var(--text-dark);
-}
-
-/* Style the submit button to echo your nav & link hovers */
-#submit-btn {
-    background: var(--accent);
-    color: var(--text-light);
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: background 0.3s, transform 0.2s;
-}
-
-#submit-btn:hover {
-    background: var(--walnut-brown);
-    transform: translateY(-2px);
 }
