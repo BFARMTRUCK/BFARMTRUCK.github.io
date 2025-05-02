@@ -440,3 +440,72 @@ h3 {
         opacity: 1;
     }
 }
+
+/* ==============================================
+   11. STYLE THE RESUME REQUEST TO MATCH CONTACT
+   ============================================== */
+
+/* Ensure the contact-form column aligns like contact-info */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Match the Contact Me heading style */
+.contact-form>h3 {
+    color: var(--text-light);
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+/* Constrain the fields so they don’t stretch edge-to-edge */
+.resume-fields {
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Each label + input group stacks like a paragraph */
+.resume-fields label {
+    display: block;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    font-weight: normal;
+    text-align: left;
+}
+
+/* Inputs & textarea fill the column */
+.resume-fields input,
+.resume-fields textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--dim-gray);
+    border-radius: 4px;
+    margin-top: 0.25rem;
+    font-family: Verdana, sans-serif;
+}
+
+/* Match your “Contact” links: white text on taupe background */
+.resume-fields input,
+.resume-fields textarea {
+    background: var(--text-light);
+    color: var(--text-dark);
+}
+
+/* Style the submit button to echo your nav & link hovers */
+#submit-btn {
+    background: var(--accent);
+    color: var(--text-light);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#submit-btn:hover {
+    background: var(--walnut-brown);
+    transform: translateY(-2px);
+}
