@@ -5,28 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baylen Farmer's Portfolio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-pI1P5+M/..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Your stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- NAVIGATION -->
     <nav>
         <ul>
             <li><a href="#welcome">Welcome</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#education">Education</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#progress">Progress</a></li>
+            <li><a href="#misc">More</a></li>
         </ul>
     </nav>
 
-    <header id="welcome">
-        <img src="images/Baylen Profile.jpg" alt="Baylen Farmer Portrait" class="profile-photo">
-        <h1>Baylen Farmer</h1>
-        <p>Welcome! I'm a student majoring in Game Development and Cybersecurity, passionate about crafting immersive
-            experiences and securing digital realms. Explore my work and interests below.</p>
-        <hr>
+    <!-- WELCOME / BIO -->
+    <header id="welcome" class="parallax">
+        <div class="overlay">
+            <img src="images/Baylen Profile.jpg" alt="Baylen Farmer Portrait" class="profile-photo">
+            <h1 class="fade-in">Baylen Farmer</h1>
+            <p class="fade-in delay-1"></p>
+            <p>Welcome! I'm a student majoring in Game Development and Cybersecurity, passionate about crafting
+                immersive
+                experiences and securing digital realms. Explore my work and interests below.</p>
+            <hr>
+        </div>
     </header>
 
     <section id="about-me">
@@ -72,34 +87,114 @@
         <hr>
     </section>
 
-    <section id="portfolio">
-        <h2>Portfolio Artifact</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.</p>
-        <img src="https://via.placeholder.com/400x200" alt="Placeholder for artifact image">
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <!-- Eternal Realms -->
+            <div class="project-card fade-in">
+                <h3><i class="fa-solid fa-dragon"></i> Eternal Realms – The Shattered Veil</h3>
+                <p class="small">
+                    Real-time strategy, Empire Earth–inspired fantasy RTS. Progress through magical ages, build, and
+                    battle epic bosses.
+                </p>
+                <ul>
+                    <li><strong>Skills:</strong> Unity, C#, Procedural Terrain, Adaptive Audio, VFX, UI/UX</li>
+                    <li><strong>Representation:</strong>
+                        <a href="#">Video</a>,
+                        <a href="#">Code</a>,
+                        <a href="#">Images</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- VR Experience -->
+            <div class="project-card fade-in delay-1">
+                <h3><i class="fa-solid fa-vr-cardboard"></i> Interactive VR Experience</h3>
+                <p class="small">
+                    A short Unity XR Toolkit–powered VR world with gaze & hand-tracking interactions.
+                </p>
+                <ul>
+                    <li><strong>Skills:</strong> Unity, XR Toolkit, VR Design, Interaction Scripting</li>
+                    <li><strong>Representation:</strong> <a href="#">Build</a>, <a href="#">Video</a></li>
+                </ul>
+            </div>
+
+            <!-- Interactive Comic -->
+            <div class="project-card fade-in delay-2">
+                <h3><i class="fa-solid fa-book-open"></i> Interactive Comic Strip</h3>
+                <p class="small">
+                    Branching 2D comic with choice-driven animations powered by JS.
+                </p>
+                <ul>
+                    <li><strong>Skills:</strong> HTML/CSS, JS, Photoshop, Storyboarding</li>
+                    <li><strong>Representation:</strong> <a href="#">Images</a></li>
+                </ul>
+            </div>
+
+            <!-- Short Story -->
+            <div class="project-card fade-in delay-3">
+                <h3><i class="fa-solid fa-code"></i> Interactive Short Story</h3>
+                <p class="small">
+                    Branching web story with visuals & sound that reacts to reader choices.
+                </p>
+                <ul>
+                    <li><strong>Skills:</strong> HTML, CSS, JS, UI/UX, Creative Writing</li>
+                    <li><strong>Representation:</strong> <a href="#">Demo</a></li>
+                </ul>
+            </div>
+
+            <!-- Database Tables -->
+            <div class="project-card fade-in delay-4">
+                <h3><i class="fa-solid fa-database"></i> Medication Database</h3>
+                <p class="small">
+                    phpMyAdmin-backed web DB of meds, forms & strengths, synced live to pages.
+                </p>
+                <ul>
+                    <li><strong>Skills:</strong> SQL, PHP, JS, HTML/CSS</li>
+                    <li><strong>Representation:</strong> <a href="#">Video</a>, <a href="#">Code</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p><i class="fa-solid fa-envelope"></i>
+            <a href="mailto:baylenfarmer@gmail.com">baylenfarmer@gmail.com</a>
+        </p>
+        <p><i class="fa-brands fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/baylenfarmer/" target="_blank">
+                linkedin.com/in/baylenfarmer
+            </a>
+        </p>
+        <p><i class="fa-brands fa-github"></i>
+            <a href="https://github.com/BFARMTRUCK" target="_blank">
+                github.com/BFARMTRUCK
+            </a>
+        </p>
+
+        <!-- Resume Request Form -->
+        <form id="resume-form" class="fade-in delay-1">
+            <h3>Request My Resume</h3>
+            <label>
+                Your Email:
+                <input type="email" name="reqEmail" placeholder="you@example.com" required>
+            </label>
+            <button type="submit"><i class="fa-solid fa-file-lines"></i> Send Request</button>
+        </form>
         <hr>
     </section>
 
-    <footer id="contact">
-        <p>Check out my projects on <a href="https://github.com/BFARMTRUCK" target="_blank">GitHub</a>.</p>
-        <p>Feel free to email me at <a href="mailto:baylenfarmer@gmail.com">baylenfarmer@gmail.com</a>.</p>
-    </footer>
-
-    <section id="progress">
-        <h2>Progress</h2>
-        <p><strong>Completed Sections:</strong></p>
-        <ul>
-            <li>About (Biography)</li>
-            <li>Experience</li>
-            <li>Education</li>
-            <li>Portfolio Artifact</li>
-            <li>Contact</li>
-        </ul>
-        <p><strong>Additional Style Elements (ICA 8):</strong></p>
-        <ul>
-            <li>Smooth scrolling between sections (<code>scroll-behavior: smooth;</code>)</li>
-            <li>Hover‐transition on navigation links (<code>nav a:hover</code> effect)</li>
-        </ul>
+    <!-- MISC GALLERY -->
+    <section id="misc">
+        <h2>Art & Models</h2>
+        <div class="gallery-grid fade-in delay-2">
+            <img src="images/art1.jpg" alt="Art sample">
+            <img src="images/art2.jpg" alt="3D model sample">
+            <img src="images/art3.jpg" alt="Sketch sample">
+        </div>
         <hr>
     </section>
 
