@@ -270,12 +270,23 @@ h3 {
     background: var(--walnut-brown);
 }
 
-.carousel-item img {
+#comicCarousel .carousel-item img {
     max-height: 300px;
     object-fit: cover;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
+#comicCarousel .carousel-control-prev-icon,
+#comicCarousel .carousel-control-next-icon {
+    filter: invert(1);
+}
+
+
+#interactiveStoryCarousel .carousel-item img {
+    max-height: 300px;
+    object-fit: cover;
+}
+
+#interactiveStoryCarousel .carousel-control-prev-icon,
+#interactiveStoryCarousel .carousel-control-next-icon {
     filter: invert(1);
 }
