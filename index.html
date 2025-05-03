@@ -16,6 +16,9 @@
 
     <!-- Your custom styles -->
     <link rel="stylesheet" href="style.css" />
+
+    <link rel="preload" as="image" href="images/Baylen Profile.jpg" fetchpriority="high" />
+
 </head>
 
 <body>
@@ -281,13 +284,18 @@
             <h2>Art & Models</h2>
             <div class="row g-3">
                 <div class="col-6 col-md-4">
-                    <img src="images/art1.jpg" class="img-fluid rounded" alt="Art sample" />
+                    <img src="images/art1.jpg" class="img-fluid rounded" loading="lazy" fetchpriority="low"
+                        alt="Art sample" />
                 </div>
                 <div class="col-6 col-md-4">
-                    <img src="images/art2.jpg" class="img-fluid rounded" alt="3D model sample" />
+                    <img src="images/art2.jpg" class="img-fluid rounded" loading="lazy" fetchpriority="low"
+                        alt="3D model sample" />
+
                 </div>
                 <div class="col-6 col-md-4">
-                    <img src="images/art3.jpg" class="img-fluid rounded" alt="Sketch sample" />
+                    <img src="images/art3.jpg" class="img-fluid rounded" loading="lazy" fetchpriority="low"
+                        alt="Sketch sample" />
+
                 </div>
             </div>
             <hr />
@@ -295,7 +303,7 @@
     </section>
 
     <!-- Bootstrap JS Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
 
