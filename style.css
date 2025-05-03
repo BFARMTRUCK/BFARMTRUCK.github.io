@@ -264,3 +264,8 @@ h3 {
         opacity: 1;
     }
 }
+
+/* NAV BACKGROUND moved from inline into stylesheet */
+.navbar {
+    background: var(--walnut-brown);
+}
