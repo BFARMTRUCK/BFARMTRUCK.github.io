@@ -290,3 +290,13 @@ h3 {
 #interactiveStoryCarousel .carousel-control-next-icon {
     filter: invert(1);
 }
+
+#rtsCarousel .carousel-item img {
+    max-height: 300px;
+    object-fit: cover;
+}
+
+#rtsCarousel .carousel-control-prev-icon,
+#rtsCarousel .carousel-control-next-icon {
+    filter: invert(1);
+}
