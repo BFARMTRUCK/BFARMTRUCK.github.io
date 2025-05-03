@@ -271,8 +271,10 @@ h3 {
 }
 
 #comicCarousel .carousel-item img {
-    max-height: 300px;
-    object-fit: cover;
+    max-height: none;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
 }
 
 #comicCarousel .carousel-control-prev-icon,
@@ -282,8 +284,10 @@ h3 {
 
 
 #interactiveStoryCarousel .carousel-item img {
-    max-height: 300px;
-    object-fit: cover;
+    max-height: none;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
 }
 
 #interactiveStoryCarousel .carousel-control-prev-icon,
@@ -292,9 +296,12 @@ h3 {
 }
 
 #rtsCarousel .carousel-item img {
-    max-height: 300px;
-    object-fit: cover;
+    max-height: none;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
 }
+
 
 #rtsCarousel .carousel-control-prev-icon,
 #rtsCarousel .carousel-control-next-icon {
