@@ -269,3 +269,13 @@ h3 {
 .navbar {
     background: var(--walnut-brown);
 }
+
+.carousel-item img {
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
