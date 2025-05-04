@@ -44,7 +44,7 @@ section#education {
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
     color: white;
     /* ensure legibility */
     padding: 3rem 1rem;
@@ -96,7 +96,7 @@ section#education {
 }
 
 header#welcome .overlay {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     padding: 4rem 1rem;
     text-align: center;
     color: var(--text-light);
@@ -141,22 +141,22 @@ hr {
      4. SECTION BACKGROUNDS 
      ========================================================================== */
 #about-me {
-    background: var(--ruddy-blue);
+    background: transparent;
     color: var(--text-light);
 }
 
 #experience {
-    background: var(--slate-gray);
+    background: transparent;
     color: var(--text-light);
 }
 
 #education {
-    background: var(--air-superiority);
+    background: transparent;
     color: var(--text-light);
 }
 
 #projects {
-    background: var(--slate-gray-2);
+    background: transparent;
     color: var(--text-light);
 }
 
