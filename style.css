@@ -90,7 +90,7 @@ section#education {
 /* Mountain panorama at top hero */
 #welcome.parallax {
     background-image: url('images/mountain_panorama.jpg');
-    min-height: 60vh;
+    min-height: auto;
 }
 
 /* Mountain panorama at bottom contact */
@@ -108,6 +108,7 @@ header#welcome .overlay {
     padding: 4rem 1rem;
     text-align: center;
     color: var(--text-light);
+    margin-bottom: 0;
 }
 
 .profile-photo {
@@ -433,4 +434,8 @@ nav {
 /* remove the default accordion borders */
 .accordion-item {
     border: none;
+}
+
+.accordion-item+.accordion-item {
+    margin-top: 0.5rem;
 }
