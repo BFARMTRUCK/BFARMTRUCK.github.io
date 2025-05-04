@@ -325,3 +325,15 @@ h3 {
 #workerCodeCarousel .carousel-control-next-icon {
     filter: invert(1);
 }
+
+#vrImageCarousel .carousel-item img {
+    max-height: none;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
+
+#vrImageCarousel .carousel-control-prev-icon,
+#vrImageCarousel .carousel-control-next-icon {
+    filter: invert(1);
+}
