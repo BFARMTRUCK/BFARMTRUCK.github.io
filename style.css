@@ -307,3 +307,18 @@ h3 {
 #rtsCarousel .carousel-control-next-icon {
     filter: invert(1);
 }
+
+#rtsCodeCarousel pre {
+    background: #2d2d2d;
+    color: #eee;
+    padding: .75rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: .9rem;
+}
+
+#rtsCodeCarousel .carousel-control-prev-icon,
+#rtsCodeCarousel .carousel-control-next-icon {
+    filter: invert(1);
+}
