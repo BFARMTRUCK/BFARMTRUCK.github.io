@@ -334,7 +334,7 @@ h4 {
 /* NAV BACKGROUND moved from inline into stylesheet */
 
 nav {
-    background-color: var(--dim-gray);
+    background-color: var(--walnut-brown);
     position: sticky;
     top: 0;
     z-index: 100;
