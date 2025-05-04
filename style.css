@@ -337,3 +337,39 @@ h3 {
 #vrImageCarousel .carousel-control-next-icon {
     filter: invert(1);
 }
+
+/*–– Global parallax setup ––*/
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    color: white;
+}
+
+.parallax .overlay {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2rem 1rem;
+}
+
+/*–– Road portrait pano as a tall scrolling strip ––*/
+#road-parallax {
+    background-image: url('images/mountain_road.jpg');
+    height: 200vh;
+    /* twice the viewport height to really see the parallax */
+}
+
+/*–– Mountain-range pano at top ––*/
+#welcome.parallax {
+    background-image: url('images/mountain_panorama.jpg');
+    height: 60vh;
+    /* adjust to taste */
+}
+
+/*–– Mountain-range pano at bottom ––*/
+#contact.parallax {
+    background-image: url('images/mountain_panorama.jpg');
+    height: 40vh;
+    /* shorter footer-style band */
+}
