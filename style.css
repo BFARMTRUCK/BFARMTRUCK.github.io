@@ -44,7 +44,7 @@ section#education {
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     color: white;
     /* ensure legibility */
     padding: 3rem 1rem;
@@ -52,12 +52,20 @@ section#education {
     border-radius: 8px;
 }
 
+#projects .container {
+    text-align: center;
+}
+
 #projects h2 {
     display: inline-block;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     padding: 0.5rem 1rem;
     border-radius: 4px;
     color: white;
+}
+
+.project-card {
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────  
@@ -96,7 +104,7 @@ section#education {
 }
 
 header#welcome .overlay {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     padding: 4rem 1rem;
     text-align: center;
     color: var(--text-light);
@@ -186,7 +194,7 @@ h2 {
 }
 
 h3 {
-    color: var(--accent);
+    color: var(--jordy-blue);
     margin: 1rem 0 0.5rem;
 }
 
