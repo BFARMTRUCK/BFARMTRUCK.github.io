@@ -235,6 +235,19 @@ h4 {
     text-decoration: underline;
 }
 
+.project-card .carousel {
+    overflow-x: hidden;
+}
+
+.project-card .carousel-item img,
+.project-card .carousel-item video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* ========================================================================== 
      7. GALLERY 
      ========================================================================== */
@@ -421,18 +434,4 @@ nav {
 /* remove the default accordion borders */
 .accordion-item {
     border: none;
-}
-
-/* make your inline carousels always fill the ratio */
-.ratio .carousel,
-.ratio .carousel-inner,
-.ratio .carousel-item {
-    height: 100%;
-}
-
-/* keep your modal carousels full-width */
-.modal-fullscreen .carousel-item img,
-.modal-fullscreen .carousel-item video {
-    width: 100%;
-    object-fit: contain;
 }
