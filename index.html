@@ -148,8 +148,8 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                        <h5 class="mb-2">Code Snippets</h5>
-                        <div id="rtsCodeCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+                        <h5 class="mb-2">ResourceSpawner2 Snippets</h5>
+                        <div id="resourceCodeCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <pre><code class="language-csharp">
@@ -217,7 +217,10 @@
                 Debug.LogError("ResourceSpawner2: MainBase not found in the scene. Please tag your main base with 'MainBase'.");
             }
         }
-
+                                            </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         void Start()
         {
             if (terrain == null)
@@ -235,9 +238,9 @@
             SpawnResources(manaPrefab, ResourceType2.Mana);
             SpawnResources(foodPrefab, ResourceType2.Food);
             SpawnTrees();
-        }                                            </code></pre>
+        }
+                                        </code></pre>
                                 </div>
-
                                 <div class="carousel-item">
                                     <pre><code class="language-csharp">
         void SpawnResources(GameObject prefab, ResourceType2 type)
@@ -269,7 +272,6 @@
             }
         }                                            </code></pre>
                                 </div>
-
                                 <div class="carousel-item">
                                     <pre><code class="language-csharp">
         GameObject GetParentForResource(ResourceType2 type)
@@ -288,7 +290,6 @@
             }
         }                                            </code></pre>
                                 </div>
-
                                 <div class="carousel-item">
                                     <pre><code class="language-csharp">
         List<Vector3> GenerateResourcePositions(int count, ResourceType2 type)
@@ -470,7 +471,10 @@
             float y = terrain.SampleHeight(new Vector3(x, 0, z)) + terrain.transform.position.y;
             return new Vector3(terrain.transform.position.x + x, y, terrain.transform.position.z + z);
         }
-
+                      </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         bool IsFarFromResources(Vector3 position, float minDistance)
         {
             foreach (Vector3 existingPos in resourcePositions)
@@ -482,10 +486,25 @@
             }
             return true;
         }
-    }                          </code></pre>
+    }    
+                                        </code></pre>
                                 </div>
-
-                                <div class="carousel-item">
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#rtsCodeCarousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#rtsCodeCarousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <h5 class="mb-2">Worker2 Snippets</h5>
+                        <div id="workerCodeCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
                                     <pre><code class="language-csharp">
     //Worker2.cs
     using UnityEngine;
@@ -614,7 +633,10 @@
             }
 
         }
-
+        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -648,7 +670,10 @@
 
             RefreshAvailableResourceDeposits();
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         void Update()
         {
             if (healthBarSlider != null)
@@ -664,9 +689,8 @@
             HandleState();
             UpdateAnimation();
         }
-        </code></pre>
+                                        </code></pre>
                                 </div>
-
                                 <div class="carousel-item">
                                     <pre><code class="language-csharp">
         public void ShowSelectionCircle()
@@ -676,13 +700,19 @@
             GetComponent<WorkerAudioController>()?.PlayHi();
 
         }
-
+        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         public void HideSelectionCircle()
         {
             if (selectionVFXInstance != null)
                 selectionVFXInstance.SetActive(false);
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         private void HandleState()
         {
             switch (currentState)
@@ -770,7 +800,10 @@
                     break;
             }
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         private void RefreshAvailableResourceDeposits()
         {
             availableResourceDeposits.Clear();
@@ -786,7 +819,10 @@
 
             Debug.Log($"Worker2 [{gameObject.name}]: Found {availableResourceDeposits.Count} available ResourceDeposits.");
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         private void FindNearestResourceDeposit()
         {
             RefreshAvailableResourceDeposits();
@@ -821,9 +857,8 @@
 
             }
         }
-        </code></pre>
+                                        </code></pre>
                                 </div>
-
                                 <div class="carousel-item">
                                     <pre><code class="language-csharp">
         public void AssignCollect(ResourceDeposit2 deposit)
@@ -862,7 +897,10 @@
             isAssignedToCollect = true;
             Debug.Log($"Worker2 [{gameObject.name}]: Assigned to collect {carriedResource} from {targetResourceDeposit.name}.");
         }
-
+        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         public void AssignMove(Vector3 destination)
         {
             if (agent == null)
@@ -885,7 +923,10 @@
 
             Debug.Log($"Worker2 [{gameObject.name}]: Assigned to move to {destination}.");
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         public void AssignBuild(Vector3 point)
         {
             buildTarget = point;
@@ -895,7 +936,10 @@
 
             Debug.Log($"{gameObject.name}: Assigned to build depot at {buildTarget}.");
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         private void AssignDeposit()
         {
             StorageDepot2[] depots = FindObjectsOfType<StorageDepot2>();
@@ -929,9 +973,8 @@
             CurrentState = WorkerState.Depositing;
             Debug.Log($"Worker2 [{name}]: Assigned to deposit at {storageDepot.name}. Waiting? {waitingForFreeDepot}");
         }
-        </code></pre>
+                                        </code></pre>
                                 </div>
-
                                 <div class="carousel-item">
                                     <pre><code class="language-csharp">
         private void DepositResources()
@@ -979,7 +1022,10 @@
 
             }
         }
-
+        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         private void CollectResource()
         {
             if (targetResourceDeposit == null)
@@ -1059,9 +1105,8 @@
 
             }
         }
-        </code></pre>
+                                        </code></pre>
                                 </div>
-
                                 <div class="carousel-item">
                                     <pre><code class="language-csharp">
         private bool CanStorageDepotAccept(StorageDepot2 depot, ResourceType2 type, int amount)
@@ -1078,7 +1123,10 @@
                     return false;
             }
         }
-
+        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         public void TakeDamage(float amount, GameObject attacker)
         {
             currentHealth -= amount;
@@ -1099,7 +1147,10 @@
                 Die(attacker);
             }
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         private void Die(GameObject attacker)
         {
             Debug.Log($"{gameObject.name} has been destroyed by {attacker.name}.");
@@ -1111,7 +1162,10 @@
                 Destroy(selectionVFXInstance);
             Destroy(gameObject, 2f);
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         private GameObject GetNearestResourceDepositOfType(ResourceType2 type)
         {
             RefreshAvailableResourceDeposits();
@@ -1134,7 +1188,10 @@
             }
             return nearest;
         }
-
+                                        </code></pre>
+                                </div>
+                                <div class="carousel-item">
+                                    <pre><code class="language-csharp">
         private void UpdateAnimation()
         {
             bool working = (currentState == WorkerState.Idle);
@@ -1145,11 +1202,9 @@
         }
 
     }
-        </code></pre>
+                                        </code></pre>
                                 </div>
-
                             </div>
-
                             <button class="carousel-control-prev" type="button" data-bs-target="#rtsCodeCarousel"
                                 data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -1161,7 +1216,6 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-
                         <ul>
                             <li><strong>Skills:</strong> Unity, C#, Procedural Terrain, Adaptive Audio, VFX, Maya,
                                 UI/UX
