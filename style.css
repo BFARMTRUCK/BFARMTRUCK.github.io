@@ -425,6 +425,42 @@ nav {
     filter: invert(1);
 }
 
+#medHtmlCarousel .carousel-item img {
+    max-height: none;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
+
+#medHtmlCarousel .carousel-control-prev-icon,
+#medHtmlCarousel .carousel-control-next-icon {
+    filter: invert(1);
+}
+
+#jsCarousel .carousel-item img {
+    max-height: none;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
+
+#jsCarousel .carousel-control-prev-icon,
+#jsCarousel .carousel-control-next-icon {
+    filter: invert(1);
+}
+
+#sqlCarousel .carousel-item img {
+    max-height: none;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
+
+#sqlCarousel .carousel-control-prev-icon,
+#sqlCarousel .carousel-control-next-icon {
+    filter: invert(1);
+}
+
 /* ensure accordion buttons blend */
 .accordion-button {
     background: rgba(0, 0, 0, 0.6);

@@ -1842,133 +1842,133 @@
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
                                                     <pre><code class="language-javascript">
-                                                        let connection = null;
+        let connection = null;
 
-                                                        async function query(sql, params = []) {
-                                                            if (!connection) {
-                                                                connection = await mysql.createConnection({
-                                                                    host: 'student-databases.cvode4s4cwrc.us-west-2.rds.amazonaws.com',
-                                                                    user: 'baylenfarmer',
-                                                                    password: 'gDjPsBoHVRrWFoQD9wXtoK8k6oEJa5jPPA4',
-                                                                    database: 'baylenfarmer'
-                                                                });
-                                                            }
-                                                            const [results] = await connection.query(sql, params);
-                                                            return results;
-                                                        }                                                        
+        async function query(sql, params = []) {
+            if (!connection) {
+                connection = await mysql.createConnection({
+                    host: 'student-databases.cvode4s4cwrc.us-west-2.rds.amazonaws.com',
+                    user: 'baylenfarmer',
+                    password: 'gDjPsBoHVRrWFoQD9wXtoK8k6oEJa5jPPA4',
+                    database: 'baylenfarmer'
+                });
+            }
+            const [results] = await connection.query(sql, params);
+            return results;
+        }                                                        
                                                     </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-javascript">
-                                                    module.exports = { query };
+        module.exports = { query };
                                                     </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-javascript">
-                                                    if (filters.name) {
-                                                        clauses.push(`m.medication_name LIKE ?`);
-                                                        params.push(`%${filters.name}%`);
-                                                      }
-                                                      if (filters.category) {
-                                                        clauses.push(`c.name = ?`);
-                                                        params.push(filters.category);
-                                                      }
-                                                      if (clauses.length) {
-                                                        sql += ' WHERE ' + clauses.join(' AND ');
-                                                      }
-                                                      // ...
-                                                      if (filters.sort_by) { /* determine field & direction */ }
-                                                      else {
-                                                        sql += ' ORDER BY m.medication_name ASC';
-                                                      }
-                                                      const limit = parseInt(filters.limit, 10) || 10;
-                                                      sql += ' LIMIT ?';
-                                                      params.push(limit);
-                                                      const results = await connection.query(sql, params);
-                                                      return results;                                                      
+        if (filters.name) {
+            clauses.push(`m.medication_name LIKE ?`);
+            params.push(`%${filters.name}%`);
+            }
+            if (filters.category) {
+            clauses.push(`c.name = ?`);
+            params.push(filters.category);
+            }
+            if (clauses.length) {
+            sql += ' WHERE ' + clauses.join(' AND ');
+            }
+            // ...
+            if (filters.sort_by) { /* determine field & direction */ }
+            else {
+            sql += ' ORDER BY m.medication_name ASC';
+            }
+            const limit = parseInt(filters.limit, 10) || 10;
+            sql += ' LIMIT ?';
+            params.push(limit);
+            const results = await connection.query(sql, params);
+            return results;                                                      
                                                         </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-javascript">
-                                                    async function insert({ medicationName, strength, form, ndc, category_id, route_id }) {
-                                                        const sql = `
-                                                          INSERT INTO medications
-                                                            (medication_name, strength, form, ndc, category_id, route_id)
-                                                          VALUES (?, ?, ?, ?, ?, ?)
-                                                        `;
-                                                        return await connection.query(sql, [
-                                                          medicationName,
-                                                          strength,
-                                                          form,
-                                                          ndc,
-                                                          category_id,
-                                                          route_id
-                                                        ]);
-                                                      }                                                      
+        async function insert({ medicationName, strength, form, ndc, category_id, route_id }) {
+            const sql = `
+                INSERT INTO medications
+                (medication_name, strength, form, ndc, category_id, route_id)
+                VALUES (?, ?, ?, ?, ?, ?)
+            `;
+            return await connection.query(sql, [
+                medicationName,
+                strength,
+                form,
+                ndc,
+                category_id,
+                route_id
+            ]);
+            }                                                      
                                                     </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-javascript">
-                                                    app.get(
-                                                        '/medications/',
-                                                        upload.none(),
-                                                        async (req, res) => {
-                                                          try {
-                                                            const rows = await medication.getAll(req.query);
-                                                            return res.json({ data: rows });
-                                                          } catch (e) {
-                                                            console.error(e);
-                                                            return res.status(500).json({ message: 'Server error fetching medications.' });
-                                                          }
-                                                        }
-                                                      );                                                      
+        app.get(
+            '/medications/',
+            upload.none(),
+            async (req, res) => {
+                try {
+                const rows = await medication.getAll(req.query);
+                return res.json({ data: rows });
+                } catch (e) {
+                console.error(e);
+                return res.status(500).json({ message: 'Server error fetching medications.' });
+                }
+            }
+            );                                                      
                                                         </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-javascript">
-                                                    app.post(
-                                                        '/medications/',
-                                                        upload.none(),
-                                                        [
-                                                          medicationNameValidation,
-                                                          strengthValidation,
-                                                          formValidation,
-                                                          ndcValidation,
-                                                          categoryValidation,
-                                                          routeValidation
-                                                        ],
-                                                        async (req, res) => {
-                                                          const errors = validationResult(req);
-                                                          if (!errors.isEmpty()) {
-                                                            return res
-                                                              .status(400)
-                                                              .json({ message: 'Validation errors.', errors: errors.array() });
-                                                          }
-                                                          try {
-                                                            await medication.insert(req.body);
-                                                            return res.json({ data: 'Medication added!' });
-                                                          } catch (e) {
-                                                            console.error(e);
-                                                            return res.status(500).json({ message: 'Server error adding medication.' });
-                                                          }
-                                                        }
-                                                      );                                                      
+        app.post(
+            '/medications/',
+            upload.none(),
+            [
+                medicationNameValidation,
+                strengthValidation,
+                formValidation,
+                ndcValidation,
+                categoryValidation,
+                routeValidation
+            ],
+            async (req, res) => {
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                return res
+                    .status(400)
+                    .json({ message: 'Validation errors.', errors: errors.array() });
+                }
+                try {
+                await medication.insert(req.body);
+                return res.json({ data: 'Medication added!' });
+                } catch (e) {
+                console.error(e);
+                return res.status(500).json({ message: 'Server error adding medication.' });
+                }
+            }
+            );                                                      
                                                         </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-javascript">
-                                                    const medicationNameValidation = body('medicationName')
-                                                    .trim()
-                                                    .notEmpty()
-                                                    .withMessage('You need to enter a medication name');                                                  
+        const medicationNameValidation = body('medicationName')
+        .trim()
+        .notEmpty()
+        .withMessage('You need to enter a medication name');                                                  
                                                         </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-javascript">     
-                                                const categoryValidation = body('category_id')
-                                                .toInt()
-                                                .isInt({ min: 1 })
-                                                .withMessage('You need to enter a category');                                              
+        const categoryValidation = body('category_id')
+        .toInt()
+        .isInt({ min: 1 })
+        .withMessage('You need to enter a category');                                              
                                                         </code></pre>
                                             </div>
                                             <button class="carousel-control-prev" type="button"
@@ -2004,46 +2004,46 @@
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
                                                 <pre><code class="language-sql">
-                                                    CREATE TABLE `medications` (
-                                                        `id` int NOT NULL,
-                                                        `medication_name` varchar(255) NOT NULL,
-                                                        `strength` varchar(255) NOT NULL,
-                                                        `form` varchar(255) NOT NULL,
-                                                        `ndc` varchar(255) NOT NULL,
-                                                        `category` varchar(255) NOT NULL,
-                                                        `route` varchar(255) NOT NULL
-                                                      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;                                                                                                         
+        CREATE TABLE `medications` (
+            `id` int NOT NULL,
+            `medication_name` varchar(255) NOT NULL,
+            `strength` varchar(255) NOT NULL,
+            `form` varchar(255) NOT NULL,
+            `ndc` varchar(255) NOT NULL,
+            `category` varchar(255) NOT NULL,
+            `route` varchar(255) NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;                                                                                                         
                                                 </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-sql">
-                                                    ALTER TABLE `medications`
-                                                    ADD COLUMN `category_id` INT NOT NULL AFTER `ndc`,
-                                                    ADD COLUMN `route_id`    INT NOT NULL AFTER `category_id`,
-                                                    ADD INDEX (`category_id`),
-                                                    ADD INDEX (`route_id`);
-                                                  
-                                                  UPDATE `medications` m
-                                                  JOIN `categories` c ON m.category = c.name
-                                                  SET m.category_id = c.id;
-                                                  
-                                                  UPDATE `medications` m
-                                                  JOIN `routes` r ON m.route = r.name
-                                                  SET m.route_id = r.id;                                                  
+        ALTER TABLE `medications`
+        ADD COLUMN `category_id` INT NOT NULL AFTER `ndc`,
+        ADD COLUMN `route_id`    INT NOT NULL AFTER `category_id`,
+        ADD INDEX (`category_id`),
+        ADD INDEX (`route_id`);
+        
+        UPDATE `medications` m
+        JOIN `categories` c ON m.category = c.name
+        SET m.category_id = c.id;
+        
+        UPDATE `medications` m
+        JOIN `routes` r ON m.route = r.name
+        SET m.route_id = r.id;                                                  
                                                 </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-sql">
-                                                    SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-                                                    START TRANSACTION;
-                                                    SET time_zone = "+00:00";                                                    
+        SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+        START TRANSACTION;
+        SET time_zone = "+00:00";                                                    
                                                     </code></pre>
                                             </div>
                                             <div class="carousel-item">
                                                 <pre><code class="language-sql">
-                                                    ALTER TABLE `medications`
-                                                    MODIFY `id` int NOT NULL AUTO_INCREMENT;
-                                                  COMMIT;                                                  
+        ALTER TABLE `medications`
+        MODIFY `id` int NOT NULL AUTO_INCREMENT;
+        COMMIT;                                                  
                                                 </code></pre>
                                             </div>
                                             <button class="carousel-control-prev" type="button"
