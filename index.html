@@ -1572,17 +1572,497 @@
                     <div class="project-card">
                         <h4><i class="fa-solid fa-database"></i> Medication Database</h4>
                         <p class="small">
-                            A phpMyAdmin-backed web database of medications, detailing
-                            strengths, forms, and
-                            uses.
-                            Data
-                            is drawn from multiple tables and synced live for up-to-date
-                            accuracy.
+                            A phpMyAdmin-backed web database of medications, detailing strengths, forms, and uses. Data
+                            is drawn from multiple tables and synced live for up-to-date accuracy.
                         </p>
+
+                        <div class="accordion" id="medicationAcc">
+                            <div class="accordion-item bg-transparent border-0">
+                                <h2 class="accordion-header" id="headingScreenshots">
+                                    <button class="accordion-button collapsed bg-dark text-white" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseScreenshots"
+                                        aria-expanded="false" aria-controls="collapseScreenshots">
+                                        Site Screenshots
+                                    </button>
+                                </h2>
+                                <div id="collapseScreenshots" class="accordion-collapse collapse"
+                                    data-bs-parent="#medicationAcc">
+                                    <div class="accordion-body p-0">
+                                        <div class="ratio ratio-16x9 mb-3">
+                                            <div id="medImagesCarousel" class="carousel slide h-100"
+                                                data-bs-ride="false" data-bs-interval="false">
+                                                <div class="carousel-inner h-100">
+                                                    <div class="carousel-item active">
+                                                        <img src="images/Table_burger.png" class="d-block w-100 rounded"
+                                                            alt="Medications table (collapsed)">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="images/Table_unburger.png"
+                                                            class="d-block w-100 rounded"
+                                                            alt="Medications table (expanded)">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="images/New_med.png" class="d-block w-100 rounded"
+                                                            alt="Insert new medication form">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="images/Edit_med.png" class="d-block w-100 rounded"
+                                                            alt="Edit medication form">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="images/Delete_med.png" class="d-block w-100 rounded"
+                                                            alt="Confirm delete medication">
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#medImagesCarousel" data-bs-slide="prev"
+                                                    aria-label="Previous slide">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#medImagesCarousel" data-bs-slide="next"
+                                                    aria-label="Next slide">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ▶️ HTML Snippets Panel -->
+                            <div class="accordion-item bg-transparent border-0">
+                                <h2 class="accordion-header" id="headingMedHtml">
+                                    <button class="accordion-button collapsed bg-dark text-white" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseMedHtml"
+                                        aria-expanded="false" aria-controls="collapseMedHtml">
+                                        HTML Snippets
+                                    </button>
+                                </h2>
+                                <div id="collapseMedHtml" class="accordion-collapse collapse" data-bs-parent="#medicationAcc">
+                                    <div class="accordion-body p-0">
+                                        <h5 class="mb-2">HTML Snippets</h5>
+                                        <div id="medHtmlCarousel" class="carousel slide mb-3" data-bs-ride="false"
+                                            data-bs-interval="false">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <pre><code class="language-html">
+        async function populateDropdowns() {
+            try {
+                const res = await fetch('/categories/');
+                const { data: categories } = await res.json();
+                const catSel = document.getElementById('category_id');
+                catSel.innerHTML = '<option value="">Select a category</option>';
+                categories.forEach(c => {
+                    const o = document.createElement('option');
+                    o.value = c.id;
+                    o.textContent = c.name;
+                    catSel.appendChild(o);
+                });
+            } catch (e) {
+                console.error('[ERROR] loading categories', e);
+            }
+            // Similar logic for routes…
+        }
+        document.addEventListener('DOMContentLoaded', populateDropdowns);
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-html">
+        document.getElementById('submit').onclick = async (evt) => {
+            evt.preventDefault();
+            // clear previous validation states
+            form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+            form.querySelectorAll('.invalid-feedback').forEach(el => el.textContent = '');
+        
+            const fd = new FormData(form);
+            const resp = await fetch('/medications/', { method: 'POST', body: fd });
+            const json = await resp.json();
+        
+            if (resp.status === 200) {
+                messageDiv.innerHTML = '<div class="success">Medication added successfully!</div>';
+            } else {
+                messageDiv.innerHTML = '<div class="error-banner">Please fix the errors above.</div>';
+                (json.errors || []).forEach(err => {
+                    const fld = document.getElementById(err.param || err.path);
+                    fld.classList.add('is-invalid');
+                    fld.nextElementSibling.textContent = err.msg;
+                });
+            }
+        };
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-html">
+        const id = new URLSearchParams(window.location.search).get('id');
+                                                        </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-html">
+        document.getElementById('del').onclick = () => {
+            fetch(`/medications/${id}/`, { method: 'DELETE' })
+                .then(r => {
+                    if (r.ok) {
+                        document.getElementById('message').innerHTML =
+                            '<div class="success">Medication deleted successfully!</div>';
+                        document.getElementById('del').disabled = true;
+                        document.getElementById('cancel').disabled = true;
+                    } else {
+                        document.getElementById('message').innerHTML =
+                            '<div class="error-banner">Failed to delete. Try again.</div>';
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('message').innerHTML =
+                        '<div class="error-banner">Network error. Try again later.</div>';
+                });
+        };                                                        
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-html">
+        async function fetchOptionsAndPrefill(med) {
+            const catSel = document.getElementById('category_id');
+            const categories = (await (await fetch('/categories/')).json()).data;
+            categories.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.name;
+                if (c.id == med.category_id) opt.selected = true;
+                catSel.appendChild(opt);
+            });
+            // Repeat for routes…
+        }
+        
+        fetch(`/medications/${id}/`)
+            .then(r => r.json().then(json => json.data))
+            .then(med => {
+                document.getElementById('medicationName').value = med.medication_name;
+                // … other fields …
+                fetchOptionsAndPrefill(med);
+            });         
+                                                        </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-html">
+        document.getElementById('update').onclick = async (event) => {
+            event.preventDefault();
+            form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+            form.querySelectorAll('.invalid-feedback').forEach(el => el.textContent = '');
+        
+            const fd = new FormData();
+            ['medicationName','strength','form','ndc','category_id','route_id']
+                .forEach(key => {
+                    const v = document.getElementById(key).value;
+                    if (v) fd.append(key, v);
+                });
+        
+            const resp = await fetch(`/medications/${id}/`, { method: 'PUT', body: fd });
+            const json = await resp.json();
+            if (resp.status === 200) {
+                messageDiv.innerHTML = '<div class="success">Medication updated successfully!</div>';
+            } else {
+                messageDiv.innerHTML = '<div class="error-banner">Please fix the errors above.</div>';
+                (json.errors || []).forEach(err => {
+                    const fld = document.getElementById(err.param || err.path);
+                    fld.classList.add('is-invalid');
+                    fld.nextElementSibling.textContent = err.msg;
+                });
+            }
+        };
+                                                        </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-html">
+        async function populateFilters() {
+            const cats = (await (await fetch('/categories/')).json()).data;
+            const catSel = document.getElementById('category');
+            cats.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.name;
+                opt.textContent = c.name;
+                catSel.appendChild(opt);
+            });
+            // Repeat for routes…
+        }
+        document.addEventListener('DOMContentLoaded', populateFilters);
+                                                        </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-html">
+        function loadTable(params) {
+            fetch('/medications/?' + params.toString())
+                .then(r => r.json().then(json => ({ status: r.status, json })))
+                .then(({ status, json }) => {
+                    let tbl = `<table class="table"><thead>…</thead><tbody>`;
+                    json.data.forEach(m => {
+                        tbl += `<tr>
+                            <td>${m.id}</td>
+                            <td>${m.medication_name}</td>
+                            <!-- …other cells… -->
+                            <td><a href="edit.html?id=${m.id}">Edit</a> - <a href="delete.html?id=${m.id}">Delete</a></td>
+                        </tr>`;
+                    });
+                    tbl += `</tbody></table>`;
+                    listDiv.innerHTML = tbl;
+                });
+        }
+                                                        </code></pre>
+                                                </div>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#medHtmlCarousel" data-bs-slide="prev"
+                                                aria-label="Previous slide">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#medHtmlCarousel" data-bs-slide="next"
+                                                aria-label="Next slide">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ▶ Panel 3: JavaScript Code Carousel -->
+                            <div class="accordion-item bg-transparent border-0">
+                                <h2 class="accordion-header" id="headingJS">
+                                    <button class="accordion-button collapsed bg-dark text-white" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseJS" aria-expanded="false"
+                                        aria-controls="collapseJS">
+                                        JavaScript Snippets
+                                    </button>
+                                </h2>
+                                <div id="collapseJS" class="accordion-collapse collapse" data-bs-parent="#medicationAcc">
+                                    <div class="accordion-body p-0">
+                                        <h5 class="mb-2">JavaScript Snippets</h5>
+                                        <div id="jsCarousel" class="carousel slide mb-3" data-bs-ride="false"
+                                            data-bs-interval="false">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <pre><code class="language-javascript">
+                                                        let connection = null;
+
+                                                        async function query(sql, params = []) {
+                                                            if (!connection) {
+                                                                connection = await mysql.createConnection({
+                                                                    host: 'student-databases.cvode4s4cwrc.us-west-2.rds.amazonaws.com',
+                                                                    user: 'baylenfarmer',
+                                                                    password: 'gDjPsBoHVRrWFoQD9wXtoK8k6oEJa5jPPA4',
+                                                                    database: 'baylenfarmer'
+                                                                });
+                                                            }
+                                                            const [results] = await connection.query(sql, params);
+                                                            return results;
+                                                        }                                                        
+                                                    </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-javascript">
+                                                    module.exports = { query };
+                                                    </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-javascript">
+                                                    if (filters.name) {
+                                                        clauses.push(`m.medication_name LIKE ?`);
+                                                        params.push(`%${filters.name}%`);
+                                                      }
+                                                      if (filters.category) {
+                                                        clauses.push(`c.name = ?`);
+                                                        params.push(filters.category);
+                                                      }
+                                                      if (clauses.length) {
+                                                        sql += ' WHERE ' + clauses.join(' AND ');
+                                                      }
+                                                      // ...
+                                                      if (filters.sort_by) { /* determine field & direction */ }
+                                                      else {
+                                                        sql += ' ORDER BY m.medication_name ASC';
+                                                      }
+                                                      const limit = parseInt(filters.limit, 10) || 10;
+                                                      sql += ' LIMIT ?';
+                                                      params.push(limit);
+                                                      const results = await connection.query(sql, params);
+                                                      return results;                                                      
+                                                        </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-javascript">
+                                                    async function insert({ medicationName, strength, form, ndc, category_id, route_id }) {
+                                                        const sql = `
+                                                          INSERT INTO medications
+                                                            (medication_name, strength, form, ndc, category_id, route_id)
+                                                          VALUES (?, ?, ?, ?, ?, ?)
+                                                        `;
+                                                        return await connection.query(sql, [
+                                                          medicationName,
+                                                          strength,
+                                                          form,
+                                                          ndc,
+                                                          category_id,
+                                                          route_id
+                                                        ]);
+                                                      }                                                      
+                                                    </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-javascript">
+                                                    app.get(
+                                                        '/medications/',
+                                                        upload.none(),
+                                                        async (req, res) => {
+                                                          try {
+                                                            const rows = await medication.getAll(req.query);
+                                                            return res.json({ data: rows });
+                                                          } catch (e) {
+                                                            console.error(e);
+                                                            return res.status(500).json({ message: 'Server error fetching medications.' });
+                                                          }
+                                                        }
+                                                      );                                                      
+                                                        </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-javascript">
+                                                    app.post(
+                                                        '/medications/',
+                                                        upload.none(),
+                                                        [
+                                                          medicationNameValidation,
+                                                          strengthValidation,
+                                                          formValidation,
+                                                          ndcValidation,
+                                                          categoryValidation,
+                                                          routeValidation
+                                                        ],
+                                                        async (req, res) => {
+                                                          const errors = validationResult(req);
+                                                          if (!errors.isEmpty()) {
+                                                            return res
+                                                              .status(400)
+                                                              .json({ message: 'Validation errors.', errors: errors.array() });
+                                                          }
+                                                          try {
+                                                            await medication.insert(req.body);
+                                                            return res.json({ data: 'Medication added!' });
+                                                          } catch (e) {
+                                                            console.error(e);
+                                                            return res.status(500).json({ message: 'Server error adding medication.' });
+                                                          }
+                                                        }
+                                                      );                                                      
+                                                        </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-javascript">
+                                                    const medicationNameValidation = body('medicationName')
+                                                    .trim()
+                                                    .notEmpty()
+                                                    .withMessage('You need to enter a medication name');                                                  
+                                                        </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-javascript">     
+                                                const categoryValidation = body('category_id')
+                                                .toInt()
+                                                .isInt({ min: 1 })
+                                                .withMessage('You need to enter a category');                                              
+                                                        </code></pre>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#jsCarousel" data-bs-slide="prev"
+                                                aria-label="Previous slide">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#jsCarousel" data-bs-slide="next"
+                                                aria-label="Next slide">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ▶ Panel 4: SQL Schema & Queries -->
+                        <div class="accordion-item bg-transparent border-0">
+                            <h2 class="accordion-header" id="headingSQL">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseSQL" aria-expanded="false"
+                                    aria-controls="collapseSQL">
+                                    SQL Schema & Queries
+                                </button>
+                            </h2>
+                            <div id="collapseSQL" class="accordion-collapse collapse" data-bs-parent="#medicationAcc">
+                                <div class="accordion-body p-0">
+                                    <h5 class="mb-2">SQL Snippets</h5>
+                                    <div id="sqlCarousel" class="carousel slide mb-3" data-bs-ride="false"
+                                        data-bs-interval="false">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <pre><code class="language-sql">
+                                                    CREATE TABLE `medications` (
+                                                        `id` int NOT NULL,
+                                                        `medication_name` varchar(255) NOT NULL,
+                                                        `strength` varchar(255) NOT NULL,
+                                                        `form` varchar(255) NOT NULL,
+                                                        `ndc` varchar(255) NOT NULL,
+                                                        `category` varchar(255) NOT NULL,
+                                                        `route` varchar(255) NOT NULL
+                                                      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;                                                                                                         
+                                                </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-sql">
+                                                    ALTER TABLE `medications`
+                                                    ADD COLUMN `category_id` INT NOT NULL AFTER `ndc`,
+                                                    ADD COLUMN `route_id`    INT NOT NULL AFTER `category_id`,
+                                                    ADD INDEX (`category_id`),
+                                                    ADD INDEX (`route_id`);
+                                                  
+                                                  UPDATE `medications` m
+                                                  JOIN `categories` c ON m.category = c.name
+                                                  SET m.category_id = c.id;
+                                                  
+                                                  UPDATE `medications` m
+                                                  JOIN `routes` r ON m.route = r.name
+                                                  SET m.route_id = r.id;                                                  
+                                                </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-sql">
+                                                    SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+                                                    START TRANSACTION;
+                                                    SET time_zone = "+00:00";                                                    
+                                                    </code></pre>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <pre><code class="language-sql">
+                                                    ALTER TABLE `medications`
+                                                    MODIFY `id` int NOT NULL AUTO_INCREMENT;
+                                                  COMMIT;                                                  
+                                                </code></pre>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#sqlCarousel" data-bs-slide="prev"
+                                                aria-label="Previous slide">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#sqlCarousel" data-bs-slide="next"
+                                                aria-label="Next slide">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <ul>
-                            <li><strong>Skills:</strong> SQL, PHP, JS, HTML/CSS</li>
-                            <li><strong>Representation:</strong> <a href="#">Video</a>, <a href="#">Code</a>
-                            </li>
+                            <li><strong>Skills:</strong> SQL, PHP, JavaScript, HTML/CSS</li>
                         </ul>
                     </div>
                 </div>
