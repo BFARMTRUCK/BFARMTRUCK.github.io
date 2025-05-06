@@ -237,7 +237,7 @@
         private GameObject manaParent;
         private GameObject foodParent;
 
-        private List<Vector3> resourcePositions = new List<Vector3>();
+        private List&lt;Vector3&gt; resourcePositions = new List&lt;Vector3&gt;();
         private Vector3 mainBasePos;
         private Vector3[] depotPositions;
     </code></pre>
@@ -254,7 +254,7 @@
 
                 var depots = GameObject.FindGameObjectsWithTag("StorageDepot");
                 depotPositions = new Vector3[depots.Length];
-                for (int i = 0; i < depots.Length; i++)
+                for (int i = 0; i &lt; depots.Length; i++)
                     depotPositions[i] = depots[i].transform.position;
             }
             else
@@ -296,14 +296,14 @@
                 return;
             }
 
-            List<Vector3> spawnPositions = GenerateResourcePositions(numberOfEachResource, type);
+            List&lt;Vector3&gt; spawnPositions = GenerateResourcePositions(numberOfEachResource, type);
 
             foreach (Vector3 pos in spawnPositions)
             {
                 GameObject deposit = Instantiate(prefab, pos, Quaternion.identity, GetParentForResource(type).transform);
                 deposit.transform.position = pos;
 
-                ResourceDeposit2 depositScript = deposit.GetComponent<ResourceDeposit2>();
+                ResourceDeposit2 depositScript = deposit.GetComponent&lt;ResourceDeposit2&gt;();
                 if (depositScript != null)
                 {
                     depositScript.resourceType = type;
@@ -337,36 +337,36 @@
                                                 </div>
                                                 <div class="carousel-item">
                                                     <pre><code class="language-csharp">
-        List<Vector3> GenerateResourcePositions(int count, ResourceType2 type)
+        List&lt;Vector3&gt; GenerateResourcePositions(int count, ResourceType2 type)
             {
-                List<Vector3> positions = new List<Vector3>();
+                List&lt;Vector3&gt; positions = new List&lt;Vector3&gt;();
                 int safetyLimit = count * 10;
                 int attempts = 0;
         
-                while (positions.Count < count && attempts < safetyLimit)
+                while (positions.Count &lt; count &amp;&amp; attempts &lt; safetyLimit)
                 {
                     attempts++;
         
                     Vector3 candidate = GetRandomTerrainPosition();
                     float y = terrain.SampleHeight(candidate) + terrain.transform.position.y;
         
-                    if (y < resourceMinY || y > resourceMaxY)
+                    if (y &lt; resourceMinY || y &gt; resourceMaxY)
                         continue;
         
                     candidate.y = y;
         
-                    if (candidate.x < terrain.transform.position.x + padding ||
-                        candidate.x > terrain.transform.position.x + terrain.terrainData.size.x - padding ||
-                        candidate.z < terrain.transform.position.z + padding ||
-                        candidate.z > terrain.transform.position.z + terrain.terrainData.size.z - padding)
+                    if (candidate.x &lt; terrain.transform.position.x + padding ||
+                        candidate.x &gt; terrain.transform.position.x + terrain.terrainData.size.x - padding ||
+                        candidate.z &lt; terrain.transform.position.z + padding ||
+                        candidate.z &gt; terrain.transform.position.z + terrain.terrainData.size.z - padding)
                         continue;
         
-                    if (Vector3.Distance(candidate, mainBasePos) < noTreeNearMainBase)
+                    if (Vector3.Distance(candidate, mainBasePos) &lt; noTreeNearMainBase)
                         continue;
         
                     bool tooCloseDepot = false;
                     foreach (var dp in depotPositions)
-                        if (Vector3.Distance(candidate, dp) < noSpawnNearDepot)
+                        if (Vector3.Distance(candidate, dp) &lt; noSpawnNearDepot)
                         {
                             tooCloseDepot = true;
                             break;
@@ -377,7 +377,7 @@
                     bool tooClose = false;
                     foreach (Vector3 existingPos in resourcePositions)
                     {
-                        if (Vector3.Distance(candidate, existingPos) < minResourceDistance)
+                        if (Vector3.Distance(candidate, existingPos) &lt; minResourceDistance)
                         {
                             tooClose = true;
                             break;
@@ -389,7 +389,7 @@
                     positions.Add(candidate);
                 }
         
-                if (positions.Count < count)
+                if (positions.Count &lt; count)
                 {
                     Debug.LogWarning($"ResourceSpawner2: Only spawned {positions.Count} out of {count} requested {type} resources due to constraints.");
                 }
@@ -415,14 +415,14 @@
             int safetyLimit = 10000;
             int attempts = 0;
 
-            while (treesSpawned < totalTrees && attempts < safetyLimit)
+            while (treesSpawned &lt; totalTrees &amp;&amp; attempts &lt; safetyLimit)
             {
                 attempts++;
 
                 Vector3 clusterCenter;
                 if (!FindValidPositionForTrees(out clusterCenter))
                 {
-                    if (attempts >= safetyLimit)
+                    if (attempts &gt;= safetyLimit)
                     {
                         Debug.LogWarning("ResourceSpawner2: Unable to find valid positions for more trees.");
                         break;
@@ -431,18 +431,18 @@
                 }
 
                 int clusterCount = Random.Range(minTreesPerCluster, maxTreesPerCluster + 1);
-                if (treesSpawned + clusterCount > totalTrees)
+                if (treesSpawned + clusterCount &gt; totalTrees)
                 {
                     clusterCount = totalTrees - treesSpawned;
                 }
 
-                for (int i = 0; i < clusterCount; i++)
+                for (int i = 0; i &lt; clusterCount; i++)
                 {
                     Vector3 treePos;
                     if (FindValidTreePositionAround(clusterCenter, out treePos))
                     {
                         GameObject tree = Instantiate(treePrefab, treePos, Quaternion.identity, treeParent.transform);
-                        ResourceDeposit2 rd = tree.GetComponent<ResourceDeposit2>();
+                        ResourceDeposit2 rd = tree.GetComponent&lt;ResourceDeposit2&gt;();
                         if (rd != null)
                         {
                             rd.resourceType = ResourceType2.Wood;
@@ -452,7 +452,7 @@
                             Debug.LogError("Tree prefab has no ResourceDeposit2 component!");
                         }
                         treesSpawned++;
-                        if (treesSpawned >= totalTrees) break;
+                        if (treesSpawned &gt;= totalTrees) break;
                     }
                 }
             }
@@ -468,23 +468,23 @@
             float clusterRadius = 30f;
 
             int maxAttempts = 1000;
-            for (int i = 0; i < maxAttempts; i++)
+            for (int i = 0; i &lt; maxAttempts; i++)
             {
                 Vector2 offset = Random.insideUnitCircle * clusterRadius;
                 Vector3 candidate = new Vector3(clusterCenter.x + offset.x, 0, clusterCenter.z + offset.y);
                 float y = terrain.SampleHeight(candidate) + terrain.transform.position.y;
 
-                if (y < treeMinY || y > treeMaxY)
+                if (y &lt; treeMinY || y &gt; treeMaxY)
                     continue;
 
                 candidate.y = y;
 
-                if (Vector3.Distance(candidate, mainBasePos) < noTreeNearMainBase)
+                if (Vector3.Distance(candidate, mainBasePos) &lt; noTreeNearMainBase)
                     continue;
 
                 bool nearDepot = false;
                 foreach (var dp in depotPositions)
-                    if (Vector3.Distance(candidate, dp) < noSpawnNearDepot)
+                    if (Vector3.Distance(candidate, dp) &lt; noSpawnNearDepot)
                     {
                         nearDepot = true;
                         break;
@@ -524,7 +524,7 @@
         {
             foreach (Vector3 existingPos in resourcePositions)
             {
-                if (VecStor3.Distance(position, existingPos) < minDistance)
+                if (VecStor3.Distance(position, existingPos) &lt; minDistance)
                 {
                     return false;
                 }
@@ -616,7 +616,7 @@
 
         private bool isAssignedToCollect = false;
 
-        private List<GameObject> availableResourceDeposits = new List<GameObject>();
+        private List&lt;GameObject&gt; availableResourceDeposits = new List&lt;GameObject&gt;();
 
         private GameObject targetResourceDeposit = null;
 
@@ -671,7 +671,7 @@
                 }
             }
 
-            animator = GetComponentInChildren<Animator>();
+            animator = GetComponentInChildren&lt;Animator&gt;();
             if (animator == null)
             {
                 Debug.LogError("No Animator component found in children of " + gameObject.name);
@@ -699,22 +699,22 @@
                                                     <pre><code class="language-csharp">
         void Start()
         {
-            agent = GetComponent<NavMeshAgent>();
+            agent = GetComponent&lt;NavMeshAgent&gt;();
             agent.stoppingDistance = depositRange;
             if (agent == null)
             {
                 Debug.LogError($"Worker2 [{gameObject.name}]: NavMeshAgent component is missing.");
             }
 
-            StorageDepot2[] depots = FindObjectsOfType<StorageDepot2>();
-            if (depots.Length > 0)
+            StorageDepot2[] depots = FindObjectsOfType&lt;StorageDepot2&gt;();
+            if (depots.Length &gt; 0)
             {
                 storageDepot = depots[0];
                 float minDist = Vector3.Distance(transform.position, storageDepot.transform.position);
                 foreach (StorageDepot2 depot in depots)
                 {
                     float dist = Vector3.Distance(transform.position, depot.transform.position);
-                    if (dist < minDist)
+                    if (dist &lt; minDist)
                     {
                         storageDepot = depot;
                         minDist = dist;
@@ -741,7 +741,7 @@
                 healthBarSlider.value = Mathf.Lerp(healthBarSlider.value, currentHealth / maxHealth, Time.deltaTime * smoothSpeed);
             }
 
-            if (healthBarSlider != null && cameraTransform != null)
+            if (healthBarSlider != null &amp;&amp; cameraTransform != null)
             {
                 healthBarSlider.transform.parent.LookAt(cameraTransform);
             }
@@ -757,7 +757,7 @@
         {
             if (selectionVFXInstance != null)
                 selectionVFXInstance.SetActive(true);
-            GetComponent<WorkerAudioController>()?.PlayHi();
+            GetComponent&lt;WorkerAudioController&gt;()?.PlayHi();
 
         }
         </code></pre>
@@ -804,7 +804,7 @@
                     UpdateAnimation();
                     float dist = Vector3.Distance(transform.position, depositPoint);
 
-                    if (dist <= depositRange)
+                    if (dist &lt;= depositRange)
                     {
                         if (waitingForFreeDepot)
                         {
@@ -824,9 +824,9 @@
 
                 case WorkerState.Building:
                     UpdateAnimation();
-                    if (!agent.pathPending && agent.remainingDistance <= 10f)
+                    if (!agent.pathPending &amp;&amp; agent.remainingDistance &lt;= 10f)
                     {
-                        var audioController = GetComponent<WorkerAudioController>();
+                        var audioController = GetComponent&lt;WorkerAudioController&gt;();
                         audioController?.PlayHammer();
 
                         Instantiate(storageDepotPrefab, buildTarget + Vector3.up * 2.5f, Quaternion.identity);
@@ -839,10 +839,10 @@
 
                 case WorkerState.Moving:
                     UpdateAnimation();
-                    if (!agent.pathPending && agent.remainingDistance <= reachedDestinationThreshold)
+                    if (!agent.pathPending &amp;&amp; agent.remainingDistance &lt;= reachedDestinationThreshold)
                     {
                         Debug.Log($"Worker2 [{gameObject.name}]: Reached destination.");
-                        if (isAssignedToCollect && targetResourceDeposit != null)
+                        if (isAssignedToCollect &amp;&amp; targetResourceDeposit != null)
                         {
                             CurrentState = WorkerState.Collecting;
                             UpdateAnimation();
@@ -870,8 +870,8 @@
             GameObject[] resourceObjects = GameObject.FindGameObjectsWithTag("ResourceDeposit");
             foreach (GameObject obj in resourceObjects)
             {
-                ResourceDeposit2 resourceData = obj.GetComponent<ResourceDeposit2>();
-                if (resourceData != null && resourceData.totalResource > 0)
+                ResourceDeposit2 resourceData = obj.GetComponent&lt;ResourceDeposit2&gt;();
+                if (resourceData != null &amp;&amp; resourceData.totalResource &gt; 0)
                 {
                     availableResourceDeposits.Add(obj);
                 }
@@ -893,12 +893,12 @@
 
             foreach (GameObject resource in availableResourceDeposits)
             {
-                ResourceDeposit2 resourceData = resource.GetComponent<ResourceDeposit2>();
+                ResourceDeposit2 resourceData = resource.GetComponent&lt;ResourceDeposit2&gt;();
                 if (resourceData == null)
                     continue;
 
                 float dist = Vector3.Distance(currentPos, resource.transform.position);
-                if (dist < minDist)
+                if (dist &lt; minDist)
                 {
                     minDist = dist;
                     nearest = resource;
@@ -907,7 +907,7 @@
 
             if (nearest != null)
             {
-                AssignCollect(nearest.GetComponent<ResourceDeposit2>());
+                AssignCollect(nearest.GetComponent&lt;ResourceDeposit2&gt;());
             }
             else
             {
@@ -929,7 +929,7 @@
                 return;
             }
 
-            if (currentCarry > 0 && carriedResource != deposit.resourceType)
+            if (currentCarry &gt; 0 &amp;&amp; carriedResource != deposit.resourceType)
             {
                 Debug.Log($"Worker2 [{gameObject.name}]: Carrying {carriedResource}, needs to deposit before collecting {deposit.resourceType}.");
                 AssignDeposit();
@@ -938,7 +938,7 @@
                 return;
             }
 
-            if (currentCarry >= carryCapacity)
+            if (currentCarry &gt;= carryCapacity)
             {
                 Debug.Log($"Worker2 [{gameObject.name}]: Carry capacity reached, need to deposit before collecting more.");
                 AssignDeposit();
@@ -1010,9 +1010,9 @@
                 return;
             }
 
-            var sorted = depots.OrderBy(d => Vector3.Distance(transform.position, d.transform.position)).ToArray();
+            var sorted = depots.OrderBy(d =&gt; Vector3.Distance(transform.position, d.transform.position)).ToArray();
 
-            StorageDepot2 chosen = sorted.FirstOrDefault(d =>
+            StorageDepot2 chosen = sorted.FirstOrDefault(d =&gt;
                 CanStorageDepotAccept(d, carriedResource, currentCarry)
             );
 
@@ -1045,7 +1045,7 @@
                 return;
             }
 
-            if (currentCarry > 0)
+            if (currentCarry &gt; 0)
             {
                 if (CanStorageDepotAccept(storageDepot, carriedResource, currentCarry))
                 {
@@ -1054,9 +1054,9 @@
                     currentCarry = 0;
                     carriedResource = default(ResourceType2);
 
-                    if (isAssignedToCollect && targetResourceDeposit != null)
+                    if (isAssignedToCollect &amp;&amp; targetResourceDeposit != null)
                     {
-                        AssignCollect(targetResourceDeposit.GetComponent<ResourceDeposit2>());
+                        AssignCollect(targetResourceDeposit.GetComponent&lt;ResourceDeposit2>());
                     }
                     else
                     {
@@ -1097,7 +1097,7 @@
                 return;
             }
 
-            ResourceDeposit2 resourceData = targetResourceDeposit.GetComponent<ResourceDeposit2>();
+            ResourceDeposit2 resourceData = targetResourceDeposit.GetComponent&lt;ResourceDeposit2&gt;();
             if (resourceData == null)
             {
                 Debug.LogError($"Worker2 [{gameObject.name}]: ResourceDeposit2 component missing on {targetResourceDeposit.name}.");
@@ -1108,7 +1108,7 @@
             }
 
             float distance = Vector3.Distance(transform.position, targetResourceDeposit.transform.position);
-            if (distance > collectionRadius)
+            if (distance &gt; collectionRadius)
             {
                 Debug.Log($"Worker2 [{gameObject.name}]: Moved out of collection radius for {targetResourceDeposit.name}. Assigning deposit.");
 
@@ -1118,13 +1118,13 @@
             int amountToCollect = carryCapacity - currentCarry;
             int collectedAmount = resourceData.Collect(amountToCollect);
 
-            if (collectedAmount > 0)
+            if (collectedAmount &gt; 0)
             {
                 currentCarry += collectedAmount;
                 carriedResource = resourceData.resourceType;
                 Debug.Log($"Worker2 [{gameObject.name}]: Collected {collectedAmount} {carriedResource} from {targetResourceDeposit.name}.");
 
-                var audioController = GetComponent<WorkerAudioController>();
+                var audioController = GetComponent&lt;WorkerAudioController&gt;();
                 switch (carriedResource)
                 {
                     case ResourceType2.Wood:
@@ -1145,19 +1145,19 @@
             }
             else
             {
-                if (resourceData.totalResource <= 0)
+                if (resourceData.totalResource &lt;= 0)
                 {
                     Debug.Log($"Worker2 [{gameObject.name}]: {carriedResource} node depleted. Searching next node.");
                     GameObject next = GetNearestResourceDepositOfType(carriedResource);
                     if (next != null)
                     {
-                        AssignCollect(next.GetComponent<ResourceDeposit2>());
+                        AssignCollect(next.GetComponent&lt;ResourceDeposit2&gt;());
                         return;
                     }
                 }
 
                 Debug.Log($"Worker2 [{gameObject.name}]: No resources to collect from {resourceData.resourceType}. Depositing/Idling.");
-                if (currentCarry > 0)
+                if (currentCarry &gt; 0)
                     AssignDeposit();
                 else
                     CurrentState = WorkerState.Idle;
@@ -1174,10 +1174,10 @@
             int current = depot.GetTotalResource(type);
             switch (type)
             {
-                case ResourceType2.Stone: return current + amount <= StorageDepot2.MaxStoneStorage;
-                case ResourceType2.Mana: return current + amount <= StorageDepot2.MaxManaStorage;
-                case ResourceType2.Food: return current + amount <= StorageDepot2.MaxFoodStorage;
-                case ResourceType2.Wood: return current + amount <= StorageDepot2.MaxWoodStorage;
+                case ResourceType2.Stone: return current + amount &lt;= StorageDepot2.MaxStoneStorage;
+                case ResourceType2.Mana: return current + amount &lt;= StorageDepot2.MaxManaStorage;
+                case ResourceType2.Food: return current + amount &lt;= StorageDepot2.MaxFoodStorage;
+                case ResourceType2.Wood: return current + amount &lt;= StorageDepot2.MaxWoodStorage;
                 default:
                     Debug.LogWarning($"Worker2 [{name}]: Unknown ResourceType2 {type}.");
                     return false;
@@ -1202,7 +1202,7 @@
                 Debug.LogWarning("Worker2: HealthBarSlider is null.");
             }
 
-            if (currentHealth <= 0)
+            if (currentHealth &lt;= 0)
             {
                 Die(attacker);
             }
@@ -1216,8 +1216,8 @@
             Debug.Log($"{gameObject.name} has been destroyed by {attacker.name}.");
             animator.SetTrigger("Die");
             agent.enabled = false;
-            GetComponent<Collider>().enabled = false;
-            GetComponent<WorkerAudioController>()?.PlayDeath();
+            GetComponent&lt;Collider&gt;().enabled = false;
+            GetComponent&lt;WorkerAudioController&gt;()?.PlayDeath();
             if (selectionVFXInstance != null)
                 Destroy(selectionVFXInstance);
             Destroy(gameObject, 2f);
@@ -1235,12 +1235,12 @@
 
             foreach (GameObject obj in availableResourceDeposits)
             {
-                var data = obj.GetComponent<ResourceDeposit2>();
+                var data = obj.GetComponent&lt;ResourceDeposit2&gt;();
                 if (data == null || data.resourceType != type) continue;
                 if (obj == targetResourceDeposit) continue;
 
                 float d = Vector3.Distance(myPos, obj.transform.position);
-                if (d < minDist)
+                if (d &lt; minDist)
                 {
                     minDist = d;
                     nearest = obj;
@@ -1647,167 +1647,107 @@
                                             data-bs-interval="false">
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
-                                                    <pre><code class="language-xml">
-        async function populateDropdowns() {
-            try {
-                const res = await fetch('/categories/');
-                const { data: categories } = await res.json();
-                const catSel = document.getElementById('category_id');
-                catSel.innerHTML = '&lt;option value=""&gt;Select a category&lt;/option&gt;';
-                categories.forEach(c =&gt; {
-                    const o = document.createElement('option');
-                    o.value = c.id;
-                    o.textContent = c.name;
-                    catSel.appendChild(o);
-                });
-            } catch (e) {
-                console.error('[ERROR] loading categories', e);
-            }
-            // Similar logic for routes…
-        }
-        document.addEventListener('DOMContentLoaded', populateDropdowns);
+                                                    <pre><code class="language-html">
+        &lt;form id="filterForm" class="row g-3" novalidate&gt;
+        &lt;div class="col-12 col-md-6"&gt;
+            &lt;label for="medicationName" class="form-label"&gt;Name&lt;/label&gt;
+            &lt;input type="text" id="medicationName" name="medicationName"
+                    class="form-control" required&gt;
+            &lt;div class="invalid-feedback"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- ...other form fields... --&gt;
+        &lt;/form&gt;
                                                     </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-xml">
-        document.getElementById('submit').onclick = async (evt) => {
-            evt.preventDefault();
-            // clear previous validation states
-            form.querySelectorAll('.is-invalid').forEach(el =&gt; el.classList.remove('is-invalid'));
-            form.querySelectorAll('.invalid-feedback').forEach(el =&gt; el.textContent = '');
-        
-            const fd = new FormData(form);
-            const resp = await fetch('/medications/', { method: 'POST', body: fd });
-            const json = await resp.json();
-        
-            if (resp.status === 200) {
-                messageDiv.innerHTML = '&lt;div class="success"&gt;Medication added successfully!&lt;/div&gt;';
-            } else {
-                messageDiv.innerHTML = '&lt;div class="error-banner"&gt;Please fix the errors above.&lt;/div&gt;';
-                (json.errors || []).forEach(err =&gt; {
-                    const fld = document.getElementById(err.param || err.path);
-                    fld.classList.add('is-invalid');
-                    fld.nextElementSibling.textContent = err.msg;
-                });
-            }
-        };
+                                                    <pre><code class="language-html">
+        &lt;div class="col-12 col-md-6"&gt;
+        &lt;label for="category_id" class="form-label"&gt;Category&lt;/label&gt;
+        &lt;select id="category_id" name="category_id"
+                class="form-select" required&gt;
+        &lt;/select&gt;
+        &lt;div class="invalid-feedback"&gt;&lt;/div&gt;
+        &lt;/div&gt;
                                                     </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-xml">
-        const id = new URLSearchParams(window.location.search).get('id');
+                                                    <pre><code class="language-html">
+        &lt;nav class="navbar navbar-expand-lg navbar-light bg-light mb-4"&gt;
+        &lt;div class="container-fluid"&gt;
+            &lt;a class="navbar-brand" href="#"&gt;Medications&lt;/a&gt;
+            &lt;button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#filterCollapse"
+                    aria-controls="filterCollapse" aria-expanded="false"
+                    aria-label="Toggle filter"&gt;
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;div class="collapse navbar-collapse" id="filterCollapse"&gt;
+            &lt;!-- filter form here --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/nav&gt;
                                                         </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-xml">
-        document.getElementById('del').onclick = () =&gt; {
-            fetch(`/medications/${id}/`, { method: 'DELETE' })
-                .then(r =&gt; {
-                    if (r.ok) {
-                        document.getElementById('message').innerHTML =
-                            '&lt;div class="success"&gt;Medication deleted successfully!&lt;/div&gt;';
-                        document.getElementById('del').disabled = true;
-                        document.getElementById('cancel').disabled = true;
-                    } else {
-                        document.getElementById('message').innerHTML =
-                            '&lt;div class="error-banner"&gt;Failed to delete. Try again.&lt;/div&gt;';
-                    }
-                })
-                .catch(() =&gt; {
-                    document.getElementById('message').innerHTML =
-                        '&lt;div class="error-banner"&gt;Network error. Try again later.&lt;/div&gt;';
-                });
-        };                                                        
+                                                    <pre><code class="language-html">
+        &lt;table class="table table-striped table-hover"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+            &lt;th scope="col"&gt;ID&lt;/th&gt;
+            &lt;th scope="col"&gt;Name&lt;/th&gt;
+            &lt;!-- ...other headers... --&gt;
+            &lt;th scope="col"&gt;Actions&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;!-- rows injected via JS --&gt;
+        &lt;/tbody&gt;
+        &lt;/table&gt;
                                                     </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-xml">
-        async function fetchOptionsAndPrefill(med) {
-            const catSel = document.getElementById('category_id');
-            const categories = (await (await fetch('/categories/')).json()).data;
-            categories.forEach(c =&gt; {
-                const opt = document.createElement('option');
-                opt.value = c.id;
-                opt.textContent = c.name;
-                if (c.id == med.category_id) opt.selected = true;
-                catSel.appendChild(opt);
-            });
-            // Repeat for routes…
-        }
-        
-        fetch(`/medications/${id}/`)
-            .then(r =&gt; r.json().then(json =&gt; json.data))
-            .then(med =&gt; {
-                document.getElementById('medicationName').value = med.medication_name;
-                // … other fields …
-                fetchOptionsAndPrefill(med);
-            });         
+                                                    <pre><code class="language-html">
+        &lt;form id="addForm" class="row g-3" novalidate&gt;
+        &lt;div class="col-12 col-md-6"&gt;
+            &lt;label for="medicationName" class="form-label"&gt;Name&lt;/label&gt;
+            &lt;input type="text" id="medicationName" name="medicationName"
+                    class="form-control" required&gt;
+            &lt;div class="invalid-feedback"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- ...other fields... --&gt;
+        &lt;/form&gt;
                                                         </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-xml">
-        document.getElementById('update').onclick = async (event) =&gt; {
-            event.preventDefault();
-            form.querySelectorAll('.is-invalid').forEach(el =&gt; el.classList.remove('is-invalid'));
-            form.querySelectorAll('.invalid-feedback').forEach(el =&gt; el.textContent = '');
-        
-            const fd = new FormData();
-            ['medicationName','strength','form','ndc','category_id','route_id']
-                .forEach(key =&gt; {
-                    const v = document.getElementById(key).value;
-                    if (v) fd.append(key, v);
-                });
-        
-            const resp = await fetch(`/medications/${id}/`, { method: 'PUT', body: fd });
-            const json = await resp.json();
-            if (resp.status === 200) {
-                messageDiv.innerHTML = '&lt;div class="success"&gt;Medication updated successfully!&lt;/div&gt;';
-            } else {
-                messageDiv.innerHTML = '&lt;div class="error-banner"&gt;Please fix the errors above.&lt;/div&gt;';
-                (json.errors || []).forEach(err =&gt; {
-                    const fld = document.getElementById(err.param || err.path);
-                    fld.classList.add('is-invalid');
-                    fld.nextElementSibling.textContent = err.msg;
-                });
-            }
-        };
+                                                    <pre><code class="language-html">
+        &lt;div class="col-12 col-md-6"&gt;
+        &lt;label for="category_id" class="form-label"&gt;Category&lt;/label&gt;
+        &lt;select id="category_id" name="category_id"
+                class="form-select" required&gt;
+            &lt;option value=""&gt;Loading…&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;div class="invalid-feedback"&gt;&lt;/div&gt;
+        &lt;/div&gt;
                                                         </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-xml">
-        async function populateFilters() {
-            const cats = (await (await fetch('/categories/')).json()).data;
-            const catSel = document.getElementById('category');
-            cats.forEach(c =&gt; {
-                const opt = document.createElement('option');
-                opt.value = c.name;
-                opt.textContent = c.name;
-                catSel.appendChild(opt);
-            });
-            // Repeat for routes…
-        }
-        document.addEventListener('DOMContentLoaded', populateFilters);
+                                                    <pre><code class="language-html">
+        &lt;div class="container py-5 text-center"&gt;
+        &lt;h1 class="mb-3"&gt;Are you sure?&lt;/h1&gt;
+        &lt;p class="mb-4 text-danger"&gt;This action cannot be undone.&lt;/p&gt;
+        &lt;div class="d-flex justify-content-center gap-2"&gt;
+            &lt;button id="del" class="btn btn-danger"&gt;Delete&lt;/button&gt;
+            &lt;button id="cancel" class="btn btn-secondary"&gt;Cancel&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div id="message" class="mt-4"&gt;&lt;/div&gt;
+        &lt;a href="index.html" class="btn btn-link mt-2"&gt;Main Table&lt;/a&gt;
+        &lt;/div&gt;
                                                         </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-xml">
-        function loadTable(params) {
-            fetch('/medications/?' + params.toString())
-                .then(r =&gt; r.json().then(json =&gt; ({ status: r.status, json })))
-                .then(({ status, json }) =&gt; {
-                    let tbl = `&lt;table class="table"&gt;&lt;thead&gt;…&lt;/thead&gt;&lt;tbody&gt;`;
-                    json.data.forEach(m =&gt; {
-                        tbl += `&lt;tr&gt;
-                        &lt;td&gt;${m.id}&lt;/td&gt;
-                        &lt;td&gt;${m.medication_name}&lt;/td&gt;
-                        &lt;!-- …other cells… --&gt;
-                        &lt;td&gt;&lt;a href="edit.html?id=${m.id}"&gt;Edit&lt;/a&gt; - &lt;a href="delete.html?id=${m.id}"&gt;Delete&lt;/a&gt;&lt;/td&gt;
-                        &lt;/tr&gt;`;
-                    });
-                    tbl += `&lt;/tbody&gt;&lt;/table&gt;`;
-                    listDiv.innerHTML = tbl;
-                });
-        }
+                                                    <pre><code class="language-html">
+        &lt;button id="del" class="btn btn-danger"&gt;Delete&lt;/button&gt;
+        &lt;button id="cancel" class="btn btn-secondary"&gt;Cancel&lt;/button&gt;
                                                         </code></pre>
                                                 </div>
                                             </div>
@@ -1842,6 +1782,170 @@
                                             data-bs-interval="false">
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
+                                                    <pre><code class="language-javascript">
+        async function populateDropdowns() {
+            try {
+                const res = await fetch('/categories/');
+                const { data: categories } = await res.json();
+                const catSel = document.getElementById('category_id');
+                catSel.innerHTML = '&lt;option value=""&gt;Select a category&lt;/option&gt;';
+                categories.forEach(c =&gt; {
+                    const o = document.createElement('option');
+                    o.value = c.id;
+                    o.textContent = c.name;
+                    catSel.appendChild(o);
+                });
+            } catch (e) {
+                console.error('[ERROR] loading categories', e);
+            }
+            // Similar logic for routes…
+        }
+        document.addEventListener('DOMContentLoaded', populateDropdowns);
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
+        document.getElementById('submit').onclick = async (evt) => {
+            evt.preventDefault();
+            // clear previous validation states
+            form.querySelectorAll('.is-invalid').forEach(el =&gt; el.classList.remove('is-invalid'));
+            form.querySelectorAll('.invalid-feedback').forEach(el =&gt; el.textContent = '');
+        
+            const fd = new FormData(form);
+            const resp = await fetch('/medications/', { method: 'POST', body: fd });
+            const json = await resp.json();
+        
+            if (resp.status === 200) {
+                messageDiv.innerHTML = '&lt;div class="success"&gt;Medication added successfully!&lt;/div&gt;';
+            } else {
+                messageDiv.innerHTML = '&lt;div class="error-banner"&gt;Please fix the errors above.&lt;/div&gt;';
+                (json.errors || []).forEach(err =&gt; {
+                    const fld = document.getElementById(err.param || err.path);
+                    fld.classList.add('is-invalid');
+                    fld.nextElementSibling.textContent = err.msg;
+                });
+            }
+        };
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
+        const id = new URLSearchParams(window.location.search).get('id');
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
+        document.getElementById('del').onclick = () =&gt; {
+            fetch(`/medications/${id}/`, { method: 'DELETE' })
+                .then(r =&gt; {
+                    if (r.ok) {
+                        document.getElementById('message').innerHTML =
+                            '&lt;div class="success"&gt;Medication deleted successfully!&lt;/div&gt;';
+                        document.getElementById('del').disabled = true;
+                        document.getElementById('cancel').disabled = true;
+                    } else {
+                        document.getElementById('message').innerHTML =
+                            '&lt;div class="error-banner"&gt;Failed to delete. Try again.&lt;/div&gt;';
+                    }
+                })
+                .catch(() =&gt; {
+                    document.getElementById('message').innerHTML =
+                        '&lt;div class="error-banner"&gt;Network error. Try again later.&lt;/div&gt;';
+                });
+        };     
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
+        async function fetchOptionsAndPrefill(med) {
+            const catSel = document.getElementById('category_id');
+            const categories = (await (await fetch('/categories/')).json()).data;
+            categories.forEach(c =&gt; {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.name;
+                if (c.id == med.category_id) opt.selected = true;
+                catSel.appendChild(opt);
+            });
+            // Repeat for routes…
+        }
+        
+        fetch(`/medications/${id}/`)
+            .then(r =&gt; r.json().then(json =&gt; json.data))
+            .then(med =&gt; {
+                document.getElementById('medicationName').value = med.medication_name;
+                // … other fields …
+                fetchOptionsAndPrefill(med);
+            });         
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
+        document.getElementById('update').onclick = async (event) => {
+            event.preventDefault();
+            form.querySelectorAll('.is-invalid').forEach(el =&gt; el.classList.remove('is-invalid'));
+            form.querySelectorAll('.invalid-feedback').forEach(el =&gt; el.textContent = '');
+        
+            const fd = new FormData();
+            ['medicationName','strength','form','ndc','category_id','route_id']
+                .forEach(key =&gt; {
+                    const v = document.getElementById(key).value;
+                    if (v) fd.append(key, v);
+                });
+        
+            const resp = await fetch(`/medications/${id}/`, { method: 'PUT', body: fd });
+            const json = await resp.json();
+            if (resp.status === 200) {
+                messageDiv.innerHTML = '&lt;div class="success"&gt;Medication updated successfully!&lt;/div&gt;';
+            } else {
+                messageDiv.innerHTML = '&lt;div class="error-banner"&gt;Please fix the errors above.&lt;/div&gt;';
+                (json.errors || []).forEach(err =&gt; {
+                    const fld = document.getElementById(err.param || err.path);
+                    fld.classList.add('is-invalid');
+                    fld.nextElementSibling.textContent = err.msg;
+                });
+            }
+        };
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
+        async function populateFilters() {
+            const cats = (await (await fetch('/categories/')).json()).data;
+            const catSel = document.getElementById('category');
+            cats.forEach(c =&gt; {
+                const opt = document.createElement('option');
+                opt.value = c.name;
+                opt.textContent = c.name;
+                catSel.appendChild(opt);
+            });
+            // Repeat for routes…
+        }
+        document.addEventListener('DOMContentLoaded', populateFilters);
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
+        function loadTable(params) {
+            fetch('/medications/?' + params.toString())
+                .then(r =&gt; r.json().then(json =&gt; ({ status: r.status, json })))
+                .then(({ status, json }) =&gt; {
+                    let tbl = `&lt;table class="table"&gt;&lt;thead&gt;…&lt;/thead&gt;&lt;tbody&gt;`;
+                    json.data.forEach(m =&gt; {
+                        tbl += `&lt;tr&gt;
+                        &lt;td&gt;${m.id}&lt;/td&gt;
+                        &lt;td&gt;${m.medication_name}&lt;/td&gt;
+                        &lt;!-- …other cells… --&gt;
+                        &lt;td&lt;a href="edit.html?id=${m.id}"&gt;Edit&lt;/a&gt; - &lt;a href="delete.html?id=${m.id}"&gt;Delete&lt;/a&gt;&lt;/td&gt;
+                        &lt;/tr&gt;`;
+                    });
+                    tbl += `&lt;/tbody&gt;&lt;/table&gt;`;
+                    listDiv.innerHTML = tbl;
+                });
+        }
+                                                    </code></pre>
+                                                </div>
+                                                <div class="carousel-item">
                                                     <pre><code class="language-javascript">
         let connection = null;
 
@@ -1878,7 +1982,7 @@
             sql += ' WHERE ' + clauses.join(' AND ');
             }
             // ...
-            if (filters.sort_by) { /* determine field & direction */ }
+            if (filters.sort_by) { /* determine field &amp; direction */ }
             else {
             sql += ' ORDER BY m.medication_name ASC';
             }
@@ -1913,7 +2017,7 @@
         app.get(
             '/medications/',
             upload.none(),
-            async (req, res) => {
+            async (req, res) =&gt; {
                 try {
                 const rows = await medication.getAll(req.query);
                 return res.json({ data: rows });
@@ -1938,7 +2042,7 @@
                 categoryValidation,
                 routeValidation
             ],
-            async (req, res) => {
+            async (req, res) =&gt; {
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
                 return res
