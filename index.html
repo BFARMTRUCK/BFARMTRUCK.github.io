@@ -19,9 +19,10 @@
 
     <link rel="preload" as="image" href="images/Baylen Enhanced 2.jpg" fetchpriority="high" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script defer>hljs.highlightAll();</script>
+
 
 
 </head>
@@ -1639,7 +1640,8 @@
                                         HTML Snippets
                                     </button>
                                 </h2>
-                                <div id="collapseMedHtml" class="accordion-collapse collapse" data-bs-parent="#medicationAcc">
+                                <div id="collapseMedHtml" class="accordion-collapse collapse"
+                                    data-bs-parent="#medicationAcc">
                                     <div class="accordion-body p-0">
                                         <div id="medHtmlCarousel" class="carousel slide mb-3" data-bs-ride="false"
                                             data-bs-interval="false">
@@ -1651,8 +1653,8 @@
                 const res = await fetch('/categories/');
                 const { data: categories } = await res.json();
                 const catSel = document.getElementById('category_id');
-                catSel.innerHTML = '<option value="">Select a category</option>';
-                categories.forEach(c => {
+                catSel.innerHTML = '&lt;option value=""&gt;Select a category&lt;/option&gt;';
+                categories.forEach(c =&gt; {
                     const o = document.createElement('option');
                     o.value = c.id;
                     o.textContent = c.name;
@@ -1671,18 +1673,18 @@
         document.getElementById('submit').onclick = async (evt) => {
             evt.preventDefault();
             // clear previous validation states
-            form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-            form.querySelectorAll('.invalid-feedback').forEach(el => el.textContent = '');
+            form.querySelectorAll('.is-invalid').forEach(el =&gt; el.classList.remove('is-invalid'));
+            form.querySelectorAll('.invalid-feedback').forEach(el =&gt; el.textContent = '');
         
             const fd = new FormData(form);
             const resp = await fetch('/medications/', { method: 'POST', body: fd });
             const json = await resp.json();
         
             if (resp.status === 200) {
-                messageDiv.innerHTML = '<div class="success">Medication added successfully!</div>';
+                messageDiv.innerHTML = '&lt;div class="success"&gt;Medication added successfully!&lt;/div&gt;';
             } else {
-                messageDiv.innerHTML = '<div class="error-banner">Please fix the errors above.</div>';
-                (json.errors || []).forEach(err => {
+                messageDiv.innerHTML = '&lt;div class="error-banner"&gt;Please fix the errors above.&lt;/div&gt;';
+                (json.errors || []).forEach(err =&gt; {
                     const fld = document.getElementById(err.param || err.path);
                     fld.classList.add('is-invalid');
                     fld.nextElementSibling.textContent = err.msg;
@@ -1698,22 +1700,22 @@
                                                 </div>
                                                 <div class="carousel-item">
                                                     <pre><code class="language-xml">
-        document.getElementById('del').onclick = () => {
+        document.getElementById('del').onclick = () =&gt; {
             fetch(`/medications/${id}/`, { method: 'DELETE' })
-                .then(r => {
+                .then(r =&gt; {
                     if (r.ok) {
                         document.getElementById('message').innerHTML =
-                            '<div class="success">Medication deleted successfully!</div>';
+                            '&lt;div class="success"&gt;Medication deleted successfully!&lt;/div&gt;';
                         document.getElementById('del').disabled = true;
                         document.getElementById('cancel').disabled = true;
                     } else {
                         document.getElementById('message').innerHTML =
-                            '<div class="error-banner">Failed to delete. Try again.</div>';
+                            '&lt;div class="error-banner"&gt;Failed to delete. Try again.&lt;/div&gt;';
                     }
                 })
-                .catch(() => {
+                .catch(() =&gt; {
                     document.getElementById('message').innerHTML =
-                        '<div class="error-banner">Network error. Try again later.</div>';
+                        '&lt;div class="error-banner"&gt;Network error. Try again later.&lt;/div&gt;';
                 });
         };                                                        
                                                     </code></pre>
@@ -1723,7 +1725,7 @@
         async function fetchOptionsAndPrefill(med) {
             const catSel = document.getElementById('category_id');
             const categories = (await (await fetch('/categories/')).json()).data;
-            categories.forEach(c => {
+            categories.forEach(c =&gt; {
                 const opt = document.createElement('option');
                 opt.value = c.id;
                 opt.textContent = c.name;
@@ -1734,8 +1736,8 @@
         }
         
         fetch(`/medications/${id}/`)
-            .then(r => r.json().then(json => json.data))
-            .then(med => {
+            .then(r =&gt; r.json().then(json =&gt; json.data))
+            .then(med =&gt; {
                 document.getElementById('medicationName').value = med.medication_name;
                 // … other fields …
                 fetchOptionsAndPrefill(med);
@@ -1744,14 +1746,14 @@
                                                 </div>
                                                 <div class="carousel-item">
                                                     <pre><code class="language-xml">
-        document.getElementById('update').onclick = async (event) => {
+        document.getElementById('update').onclick = async (event) =&gt; {
             event.preventDefault();
-            form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-            form.querySelectorAll('.invalid-feedback').forEach(el => el.textContent = '');
+            form.querySelectorAll('.is-invalid').forEach(el =&gt; el.classList.remove('is-invalid'));
+            form.querySelectorAll('.invalid-feedback').forEach(el =&gt; el.textContent = '');
         
             const fd = new FormData();
             ['medicationName','strength','form','ndc','category_id','route_id']
-                .forEach(key => {
+                .forEach(key =&gt; {
                     const v = document.getElementById(key).value;
                     if (v) fd.append(key, v);
                 });
@@ -1759,10 +1761,10 @@
             const resp = await fetch(`/medications/${id}/`, { method: 'PUT', body: fd });
             const json = await resp.json();
             if (resp.status === 200) {
-                messageDiv.innerHTML = '<div class="success">Medication updated successfully!</div>';
+                messageDiv.innerHTML = '&lt;div class="success"&gt;Medication updated successfully!&lt;/div&gt;';
             } else {
-                messageDiv.innerHTML = '<div class="error-banner">Please fix the errors above.</div>';
-                (json.errors || []).forEach(err => {
+                messageDiv.innerHTML = '&lt;div class="error-banner"&gt;Please fix the errors above.&lt;/div&gt;';
+                (json.errors || []).forEach(err =&gt; {
                     const fld = document.getElementById(err.param || err.path);
                     fld.classList.add('is-invalid');
                     fld.nextElementSibling.textContent = err.msg;
@@ -1776,7 +1778,7 @@
         async function populateFilters() {
             const cats = (await (await fetch('/categories/')).json()).data;
             const catSel = document.getElementById('category');
-            cats.forEach(c => {
+            cats.forEach(c =&gt; {
                 const opt = document.createElement('option');
                 opt.value = c.name;
                 opt.textContent = c.name;
@@ -1791,18 +1793,18 @@
                                                     <pre><code class="language-xml">
         function loadTable(params) {
             fetch('/medications/?' + params.toString())
-                .then(r => r.json().then(json => ({ status: r.status, json })))
-                .then(({ status, json }) => {
-                    let tbl = `<table class="table"><thead>…</thead><tbody>`;
-                    json.data.forEach(m => {
-                        tbl += `<tr>
-                            <td>${m.id}</td>
-                            <td>${m.medication_name}</td>
-                            <!-- …other cells… -->
-                            <td><a href="edit.html?id=${m.id}">Edit</a> - <a href="delete.html?id=${m.id}">Delete</a></td>
-                        </tr>`;
+                .then(r =&gt; r.json().then(json =&gt; ({ status: r.status, json })))
+                .then(({ status, json }) =&gt; {
+                    let tbl = `&lt;table class="table"&gt;&lt;thead&gt;…&lt;/thead&gt;&lt;tbody&gt;`;
+                    json.data.forEach(m =&gt; {
+                        tbl += `&lt;tr&gt;
+                        &lt;td&gt;${m.id}&lt;/td&gt;
+                        &lt;td&gt;${m.medication_name}&lt;/td&gt;
+                        &lt;!-- …other cells… --&gt;
+                        &lt;td&gt;&lt;a href="edit.html?id=${m.id}"&gt;Edit&lt;/a&gt; - &lt;a href="delete.html?id=${m.id}"&gt;Delete&lt;/a&gt;&lt;/td&gt;
+                        &lt;/tr&gt;`;
                     });
-                    tbl += `</tbody></table>`;
+                    tbl += `&lt;/tbody&gt;&lt;/table&gt;`;
                     listDiv.innerHTML = tbl;
                 });
         }
@@ -1833,7 +1835,8 @@
                                         JavaScript Snippets
                                     </button>
                                 </h2>
-                                <div id="collapseJS" class="accordion-collapse collapse" data-bs-parent="#medicationAcc">
+                                <div id="collapseJS" class="accordion-collapse collapse"
+                                    data-bs-parent="#medicationAcc">
                                     <div class="accordion-body p-0">
                                         <div id="jsCarousel" class="carousel slide mb-3" data-bs-ride="false"
                                             data-bs-interval="false">
@@ -1855,14 +1858,14 @@
             return results;
         }                                                        
                                                     </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-javascript">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
         module.exports = { query };
                                                     </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-javascript">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
         if (filters.name) {
             clauses.push(`m.medication_name LIKE ?`);
             params.push(`%${filters.name}%`);
@@ -1885,9 +1888,9 @@
             const results = await connection.query(sql, params);
             return results;                                                      
                                                         </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-javascript">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
         async function insert({ medicationName, strength, form, ndc, category_id, route_id }) {
             const sql = `
                 INSERT INTO medications
@@ -1904,9 +1907,9 @@
             ]);
             }                                                      
                                                     </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-javascript">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
         app.get(
             '/medications/',
             upload.none(),
@@ -1921,9 +1924,9 @@
             }
             );                                                      
                                                         </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-javascript">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
         app.post(
             '/medications/',
             upload.none(),
@@ -1952,55 +1955,56 @@
             }
             );                                                      
                                                         </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-javascript">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">
         const medicationNameValidation = body('medicationName')
         .trim()
         .notEmpty()
         .withMessage('You need to enter a medication name');                                                  
                                                         </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-javascript">     
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-javascript">     
         const categoryValidation = body('category_id')
         .toInt()
         .isInt({ min: 1 })
         .withMessage('You need to enter a category');                                              
                                                         </code></pre>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#jsCarousel" data-bs-slide="prev"
+                                                    aria-label="Previous slide">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#jsCarousel" data-bs-slide="next"
+                                                    aria-label="Next slide">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                </button>
                                             </div>
-                                            <button class="carousel-control-prev" type="button"
-                                                data-bs-target="#jsCarousel" data-bs-slide="prev"
-                                                aria-label="Previous slide">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button"
-                                                data-bs-target="#jsCarousel" data-bs-slide="next"
-                                                aria-label="Next slide">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- ▶ Panel 4: SQL Schema & Queries -->
-                        <div class="accordion-item bg-transparent border-0">
-                            <h2 class="accordion-header" id="headingSQL">
-                                <button class="accordion-button collapsed bg-dark text-white" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseSQL" aria-expanded="false"
-                                    aria-controls="collapseSQL">
-                                    SQL Schema & Queries
-                                </button>
-                            </h2>
-                            <div id="collapseSQL" class="accordion-collapse collapse" data-bs-parent="#medicationAcc">
-                                <div class="accordion-body p-0">
-                                    <div id="sqlCarousel" class="carousel slide mb-3" data-bs-ride="false"
-                                        data-bs-interval="false">
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <pre><code class="language-sql">
+                            <!-- ▶ Panel 4: SQL Schema & Queries -->
+                            <div class="accordion-item bg-transparent border-0">
+                                <h2 class="accordion-header" id="headingSQL">
+                                    <button class="accordion-button collapsed bg-dark text-white" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseSQL" aria-expanded="false"
+                                        aria-controls="collapseSQL">
+                                        SQL Schema & Queries
+                                    </button>
+                                </h2>
+                                <div id="collapseSQL" class="accordion-collapse collapse"
+                                    data-bs-parent="#medicationAcc">
+                                    <div class="accordion-body p-0">
+                                        <div id="sqlCarousel" class="carousel slide mb-3" data-bs-ride="false"
+                                            data-bs-interval="false">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <pre><code class="language-sql">
         CREATE TABLE `medications` (
             `id` int NOT NULL,
             `medication_name` varchar(255) NOT NULL,
@@ -2011,9 +2015,9 @@
             `route` varchar(255) NOT NULL
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;                                                                                                         
                                                 </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-sql">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-sql">
         ALTER TABLE `medications`
         ADD COLUMN `category_id` INT NOT NULL AFTER `ndc`,
         ADD COLUMN `route_id`    INT NOT NULL AFTER `category_id`,
@@ -2028,44 +2032,44 @@
         JOIN `routes` r ON m.route = r.name
         SET m.route_id = r.id;                                                  
                                                 </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-sql">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-sql">
         SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
         START TRANSACTION;
         SET time_zone = "+00:00";                                                    
                                                     </code></pre>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <pre><code class="language-sql">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <pre><code class="language-sql">
         ALTER TABLE `medications`
         MODIFY `id` int NOT NULL AUTO_INCREMENT;
         COMMIT;                                                  
                                                 </code></pre>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#sqlCarousel" data-bs-slide="prev"
+                                                    aria-label="Previous slide">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#sqlCarousel" data-bs-slide="next"
+                                                    aria-label="Next slide">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                </button>
                                             </div>
-                                            <button class="carousel-control-prev" type="button"
-                                                data-bs-target="#sqlCarousel" data-bs-slide="prev"
-                                                aria-label="Previous slide">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button"
-                                                data-bs-target="#sqlCarousel" data-bs-slide="next"
-                                                aria-label="Next slide">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <ul>
+                                <li><strong>Skills:</strong> SQL, PHP, JavaScript, HTML/CSS</li>
+                            </ul>
                         </div>
-                        <ul>
-                            <li><strong>Skills:</strong> SQL, PHP, JavaScript, HTML/CSS</li>
-                        </ul>
                     </div>
                 </div>
+                <hr />
             </div>
-            <hr />
-        </div>
     </section>
 
     <!-- EXPERIENCE -->
@@ -2204,6 +2208,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+        });
+    </script>
 
     <!-- Formspree Submission Script -->
     <script>
