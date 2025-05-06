@@ -1645,7 +1645,7 @@
                                             data-bs-interval="false">
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
-                                                    <pre><code class="language-html">
+                                                    <pre><code class="language-xml">
         async function populateDropdowns() {
             try {
                 const res = await fetch('/categories/');
@@ -1667,7 +1667,7 @@
                                                     </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-html">
+                                                    <pre><code class="language-xml">
         document.getElementById('submit').onclick = async (evt) => {
             evt.preventDefault();
             // clear previous validation states
@@ -1692,12 +1692,12 @@
                                                     </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-html">
+                                                    <pre><code class="language-xml">
         const id = new URLSearchParams(window.location.search).get('id');
                                                         </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-html">
+                                                    <pre><code class="language-xml">
         document.getElementById('del').onclick = () => {
             fetch(`/medications/${id}/`, { method: 'DELETE' })
                 .then(r => {
@@ -1719,7 +1719,7 @@
                                                     </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-html">
+                                                    <pre><code class="language-xml">
         async function fetchOptionsAndPrefill(med) {
             const catSel = document.getElementById('category_id');
             const categories = (await (await fetch('/categories/')).json()).data;
@@ -1743,7 +1743,7 @@
                                                         </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-html">
+                                                    <pre><code class="language-xml">
         document.getElementById('update').onclick = async (event) => {
             event.preventDefault();
             form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
@@ -1772,7 +1772,7 @@
                                                         </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-html">
+                                                    <pre><code class="language-xml">
         async function populateFilters() {
             const cats = (await (await fetch('/categories/')).json()).data;
             const catSel = document.getElementById('category');
@@ -1788,7 +1788,7 @@
                                                         </code></pre>
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <pre><code class="language-html">
+                                                    <pre><code class="language-xml">
         function loadTable(params) {
             fetch('/medications/?' + params.toString())
                 .then(r => r.json().then(json => ({ status: r.status, json })))
