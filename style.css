@@ -364,12 +364,6 @@ nav {
     height: auto;
 }
 
-#comicCarousel .carousel-control-prev-icon,
-#comicCarousel .carousel-control-next-icon {
-    filter: invert(1);
-}
-
-
 #interactiveStoryCarousel .carousel-item img {
     max-height: none;
     object-fit: contain;
@@ -378,7 +372,9 @@ nav {
 }
 
 #interactiveStoryCarousel .carousel-control-prev-icon,
-#interactiveStoryCarousel .carousel-control-next-icon {
+#interactiveStoryCarousel .carousel-control-next-icon
+#medImagesCarousel .carousel-control-prev-icon,
+#medImagesCarousel .carousel-control-next-icon {
     filter: invert(1);
 }
 
@@ -389,14 +385,11 @@ nav {
     height: auto;
 }
 
-
-#rtsCarousel .carousel-control-prev-icon,
-#rtsCarousel .carousel-control-next-icon {
-    filter: invert(1);
-}
-
 #resourceCodeCarousel pre,
-#workerCodeCarousel pre {
+#workerCodeCarousel pre
+#medHtmlCarousel pre,
+#jsCarousel pre,
+#sqlCarousel pre {
     background: #2d2d2d;
     color: #eee;
     padding: .75rem;
@@ -406,23 +399,11 @@ nav {
     font-size: .9rem;
 }
 
-#resourceCodeCarousel .carousel-control-prev-icon,
-#resourceCodeCarousel .carousel-control-next-icon,
-#workerCodeCarousel .carousel-control-prev-icon,
-#workerCodeCarousel .carousel-control-next-icon {
-    filter: invert(1);
-}
-
 #vrImageCarousel .carousel-item img {
     max-height: none;
     object-fit: contain;
     width: 100%;
     height: auto;
-}
-
-#vrImageCarousel .carousel-control-prev-icon,
-#vrImageCarousel .carousel-control-next-icon {
-    filter: invert(1);
 }
 
 #medHtmlCarousel .carousel-item img {
@@ -432,11 +413,6 @@ nav {
     height: auto;
 }
 
-#medHtmlCarousel .carousel-control-prev-icon,
-#medHtmlCarousel .carousel-control-next-icon {
-    filter: invert(1);
-}
-
 #jsCarousel .carousel-item img {
     max-height: none;
     object-fit: contain;
@@ -444,21 +420,11 @@ nav {
     height: auto;
 }
 
-#jsCarousel .carousel-control-prev-icon,
-#jsCarousel .carousel-control-next-icon {
-    filter: invert(1);
-}
-
 #sqlCarousel .carousel-item img {
     max-height: none;
     object-fit: contain;
     width: 100%;
     height: auto;
-}
-
-#sqlCarousel .carousel-control-prev-icon,
-#sqlCarousel .carousel-control-next-icon {
-    filter: invert(1);
 }
 
 /* ensure accordion buttons blend */
